@@ -1,7 +1,10 @@
+import { Container } from '@chakra-ui/react'
 import React from 'react'
 
 export const ActionForm = () => {
   return (
-    <div>ActionForm</div>
+    <Container bg='red.300'>
+        ActionForm
+    </Container>
   )
 }

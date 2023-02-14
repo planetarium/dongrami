@@ -9,9 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.5.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@planetarium/account-local": "^0.0.38",
     "@planetarium/sign": "^0.0.12",
     "@planetarium/tx": "^0.47.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^9.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

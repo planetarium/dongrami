@@ -1,19 +1,18 @@
-import { useState } from 'react'
-import { PrivateKeyGetter } from './components/PrivateKeyGetter'
-import { ActionForm } from './components/ActionForm'
-import { TransactionStatus } from './components/TransactionStatus'
-import './App.css'
+import { useState } from "react";
+import { PrivateKeyGetter } from "./components/PrivateKeyGetter";
+import { ActionForm } from "./components/ActionForm";
+import { TransactionStatus } from "./components/TransactionStatus";
+import { Container } from "@chakra-ui/react";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <PrivateKeyGetter />
-      <ActionForm />
-      <TransactionStatus />
-    </div>
-  )
+      <Container className="App" maxW='2xl' borderRadius='1rem' backgroundColor="magenta" centerContent>
+        <PrivateKeyGetter />
+        <ActionForm />
+        <TransactionStatus />
+      </Container>
+  );
 }
 
-export default App
+export default App;
