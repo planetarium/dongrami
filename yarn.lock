@@ -1682,9 +1682,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@planetarium/account-local@npm:^0.0.38":
+"@planetarium/account-web@file:../sphere/packages/account-web::locator=dongrami%40workspace%3A.":
   version: 0.0.38
-  resolution: "@planetarium/account-local@npm:0.0.38"
+  resolution: "@planetarium/account-web@file:../sphere/packages/account-web#../sphere/packages/account-web::hash=4c6430&locator=dongrami%40workspace%3A."
   dependencies:
     "@noble/hashes": ^1.1.5
     "@noble/secp256k1": ^1.7.0
@@ -1694,8 +1694,8 @@ __metadata:
     randombytes: ^2.1.0
     uuid: ^9.0.0
   peerDependencies:
-    "@planetarium/sign": ^0.0.12
-  checksum: 6ac775e148ac5f1214e92a61c6d0f7ac5792b785fe6bc5280f5b134e8fb57347f6b6b217dfd300003164a138b7a32f5da789fa1d99016cca03aa3e14ea0f3bf0
+    "@planetarium/sign": "workspace:^"
+  checksum: 4fe38f81944af2238bc40880c22ca0f34eabe91c9cd77133bc3371f97484491d9ed64e18156ea08c3cf10ce74cf798d9febad17cd88b4a7a769982506001455b
   languageName: node
   linkType: hard
 
@@ -2382,7 +2382,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.3.3":
+"debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.3":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
   dependencies:
@@ -2429,7 +2429,7 @@ __metadata:
     "@chakra-ui/react": ^2.5.0
     "@emotion/react": ^11.10.5
     "@emotion/styled": ^11.10.5
-    "@planetarium/account-local": ^0.0.38
+    "@planetarium/account-web": "file:../sphere/packages/account-web"
     "@planetarium/sign": ^0.0.12
     "@planetarium/tx": ^0.47.0
     "@types/prettier": ^2
@@ -2443,6 +2443,8 @@ __metadata:
     react-dom: ^18.2.0
     typescript: ^4.9.3
     vite: ^4.1.0
+    vite-tsconfig-paths: ^4.0.5
+    zustand: ^4.3.3
   languageName: unknown
   linkType: soft
 
@@ -2787,6 +2789,13 @@ __metadata:
     minimatch: ^5.0.1
     once: ^1.3.0
   checksum: 92fbea3221a7d12075f26f0227abac435de868dd0736a17170663783296d0dd8d3d532a5672b4488a439bf5d7fb85cdd07c11185d6cd39184f0385cbdfb86a47
+  languageName: node
+  linkType: hard
+
+"globrex@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "globrex@npm:0.1.2"
+  checksum: adca162494a176ce9ecf4dd232f7b802956bb1966b37f60c15e49d2e7d961b66c60826366dc2649093cad5a0d69970cfa8875bd1695b5a1a2f33dcd2aa88da3c
   languageName: node
   linkType: hard
 
@@ -3953,6 +3962,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tsconfck@npm:^2.0.1":
+  version: 2.0.2
+  resolution: "tsconfck@npm:2.0.2"
+  peerDependencies:
+    typescript: ^4.3.5
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  bin:
+    tsconfck: bin/tsconfck.js
+  checksum: bc914042b2f5e1f9d7bbadd05b74031f32e2f1757061743d70d86d17dda0734d838e67abb0105b81db67c30b66496e5d408cbe216bb43b3d567a181b0448ddc1
+  languageName: node
+  linkType: hard
+
 "tslib@npm:2.4.0":
   version: 2.4.0
   resolution: "tslib@npm:2.4.0"
@@ -4043,6 +4066,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"use-sync-external-store@npm:1.2.0":
+  version: 1.2.0
+  resolution: "use-sync-external-store@npm:1.2.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 5c639e0f8da3521d605f59ce5be9e094ca772bd44a4ce7322b055a6f58eeed8dda3c94cabd90c7a41fb6fa852210092008afe48f7038792fd47501f33299116a
+  languageName: node
+  linkType: hard
+
 "util-deprecate@npm:^1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -4056,6 +4088,17 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
+  languageName: node
+  linkType: hard
+
+"vite-tsconfig-paths@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "vite-tsconfig-paths@npm:4.0.5"
+  dependencies:
+    debug: ^4.1.1
+    globrex: ^0.1.2
+    tsconfck: ^2.0.1
+  checksum: 49b4064881343ef0b75e52eeb1d5cdfe1f26b32ded68e71efc84022e8e96bdb3d3f37f79f3678b43e935dca279cc24c5936942b5fdbaf1489b497e48572314d9
   languageName: node
   linkType: hard
 
@@ -4135,5 +4178,22 @@ __metadata:
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^4.3.3":
+  version: 4.3.3
+  resolution: "zustand@npm:4.3.3"
+  dependencies:
+    use-sync-external-store: 1.2.0
+  peerDependencies:
+    immer: ">=9.0"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: fe0277ab0ce14849dea254cbdcfe83d4614364d38e616875f75ef2419f29085f5b03605efabeb33189a4557e647efaa294e0984c4f642e0566f445a7b207cdd6
   languageName: node
   linkType: hard

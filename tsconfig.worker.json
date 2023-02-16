@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "ES2015",
+    "outDir": "./public",
+    "moduleResolution": "node",
+    "strict": true,
+    "lib": [
+      "WebWorker"
+    ]
+  },
+  "include": [
+    "src/worker.ts",
+    "src/types/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

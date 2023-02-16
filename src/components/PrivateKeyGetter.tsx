@@ -1,26 +1,35 @@
-import { Box, Input, FormControl, FormLabel, Button } from "@chakra-ui/react";
-import {
-  Formik,
-  FormikHelpers,
-  FormikProps,
-  Form,
-  Field,
-  FieldProps,
-} from "formik";
-import React, { useState } from "react";
-import { getAccountFromV3 } from "@planetarium/account-local";
+import { Box, Button, FormLabel, Input } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useWorker } from "../store/main";
+import { WorkerMessage } from "../types/message";
 
 export const PrivateKeyGetter = () => {
-  const [keyFile, setKeyFile] = useState<string>("");
+  const worker = useWorker();
+
+  const [keyFile, setKeyFile] = useState<File | null>(null);
   const [password, setPassword] = useState<string>("");
+
+  useEffect(() => {
+    if (!worker || !keyFile) {
+      return;
+    }
+
+    worker.postMessage<WorkerMessage>({
+      key: "KEY_FILE_READ",
+      data: {
+        file: keyFile,
+      },
+    });
+  }, [keyFile]);
+
   return (
     <Box p={2} bg="blue.300">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
           try {
-            const acc = await getAccountFromV3(keyFile, password);
-            console.log(acc.getPublicKey());
+            // const acc = await getAccountFromV3(keyFile, password);
+            // console.log(acc.getPublicKey());
           } catch (e) {
             console.log(e);
           }
@@ -31,9 +40,9 @@ export const PrivateKeyGetter = () => {
           type="file"
           name="keyFile"
           onChange={(e) => {
-            const fr = new FileReader();
-            fr.readAsText(e.target.files![0]);
-            typeof fr.result === "string" && setKeyFile(fr.result);
+            if (e.target.files && e.target.files.length === 1) {
+              setKeyFile(e.target.files[0]);
+            }
           }}
         ></Input>
         <FormLabel>Passphrase</FormLabel>
