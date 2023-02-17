@@ -7,6 +7,7 @@ type MainState = {
   worker: Worker | null;
   message: WorkerResultMessage | null;
   keystore: string | null;
+  publicKey: string | null;
   account: Account | null;
   mutations: {
     setWorker: (worker: Worker) => void;
@@ -22,6 +23,7 @@ const useMainStore = create<MainState>()(
     message: null,
     keystore: null,
     account: null,
+    publicKey: null,
     mutations: {
       setWorker: (worker) => set((state) => ({ ...state, worker })),
       setMessage: (message) => set((state) => ({ ...state, message })),

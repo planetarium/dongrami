@@ -10,6 +10,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { faFile } from '@fortawesome/free-regular-svg-icons';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getAccountFromV3 } from '@planetarium/account-web';
 import { FormEvent, useEffect, useRef, useState } from 'react';
@@ -81,8 +82,7 @@ export function AuthenticatePage() {
     }
 
     try {
-      const account = await getAccountFromV3(keystore, passsphrase);
-      setAccount(account);
+      setAccount(getAccountFromV3(keystore, passsphrase));
     } catch (e: unknown) {
       setLoading(false);
 
@@ -107,56 +107,62 @@ export function AuthenticatePage() {
   };
 
   return (
-    <Box p="3">
-      <form onSubmit={authenticate}>
-        <FormControl mt="3" isRequired>
-          <FormLabel>Web3 Secret Storage File</FormLabel>
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <Icon as={FontAwesomeIcon} icon={faFile} textColor="gray.500" />
-            </InputLeftElement>
-            <Input
-              type="text"
-              readOnly
-              value={keyFile ? keyFile.name : ''}
-              onChange={() => {
-                void 0;
-              }}
-              onClick={() =>
-                inputFileRef.current && inputFileRef.current.click()
-              }
-            />
-          </InputGroup>
-        </FormControl>
-        <FormControl mt="3" isRequired>
-          <FormLabel>Passphrase</FormLabel>
+    <Box
+      as="form"
+      display="flex"
+      gap="3"
+      flexDir="column"
+      onSubmit={authenticate}
+    >
+      <FormControl isRequired>
+        <FormLabel>Web3 Secret Storage File</FormLabel>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">
+            <Icon as={FontAwesomeIcon} icon={faFile} textColor="gray.500" />
+          </InputLeftElement>
+          <Input
+            type="text"
+            readOnly
+            value={keyFile ? keyFile.name : ''}
+            onChange={() => {
+              void 0;
+            }}
+            onClick={() => inputFileRef.current && inputFileRef.current.click()}
+          />
+        </InputGroup>
+      </FormControl>
+      <FormControl isRequired>
+        <FormLabel>Passphrase</FormLabel>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">
+            <Icon as={FontAwesomeIcon} icon={faKey} textColor="gray.500" />
+          </InputLeftElement>
           <Input
             type="password"
             value={passsphrase}
             onChange={(e) => setPassphrase(e.target.value)}
             disabled={!keystore}
           />
-        </FormControl>
-        <Input
-          type="file"
-          display="none"
-          ref={inputFileRef}
-          onChange={(e) => {
-            if (e.target.files && e.target.files.length === 1) {
-              setKeyFile(e.target.files[0]);
-            }
-          }}
-        />
-        <Button
-          mt="3"
-          w="full"
-          type="submit"
-          isDisabled={!keystore || !passsphrase}
-          isLoading={isLoading}
-        >
-          Submit
-        </Button>
-      </form>
+        </InputGroup>
+      </FormControl>
+      <Input
+        type="file"
+        display="none"
+        ref={inputFileRef}
+        onChange={(e) => {
+          if (e.target.files && e.target.files.length === 1) {
+            setKeyFile(e.target.files[0]);
+          }
+        }}
+      />
+      <Button
+        w="full"
+        type="submit"
+        isDisabled={!keystore || !passsphrase}
+        isLoading={isLoading}
+      >
+        Submit
+      </Button>
     </Box>
   );
 }

@@ -2201,14 +2201,14 @@ __metadata:
 
 "@planetarium/account-web@file:../sphere/packages/account-web::locator=dongrami%40workspace%3A.":
   version: 0.0.38
-  resolution: "@planetarium/account-web@file:../sphere/packages/account-web#../sphere/packages/account-web::hash=39ff16&locator=dongrami%40workspace%3A."
+  resolution: "@planetarium/account-web@file:../sphere/packages/account-web#../sphere/packages/account-web::hash=de8888&locator=dongrami%40workspace%3A."
   dependencies:
     "@noble/secp256k1": ^1.7.0
     buffer: ^6.0.3
     ethers: ^5
   peerDependencies:
     "@planetarium/sign": "workspace:^"
-  checksum: 3f7f5ac4e98ff17ef9ecdc93b5df1806949051908262a579531235b34709ef673cd3802d820370245b3180fb24528a904c61ec8495708aaf8df41867f05800b9
+  checksum: 94b00aff8c758cd313a78ce32b766434c79e818fe6dff07a343b2353afce8bc71677a45dfc29bda578307ab2fdef7cba50ed70b2b60e1095cafec595df4ce9c6
   languageName: node
   linkType: hard
 
@@ -3290,6 +3290,7 @@ __metadata:
     eslint-plugin-jsx-a11y: ^6.7.1
     eslint-plugin-react: latest
     eslint-plugin-react-hooks: ^4.6.0
+    ethers: 5
     formik: ^2.2.9
     framer-motion: ^9.0.2
     prettier: ^2.8.4
@@ -3806,7 +3807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ethers@npm:^5":
+"ethers@npm:5, ethers@npm:^5":
   version: 5.7.2
   resolution: "ethers@npm:5.7.2"
   dependencies:

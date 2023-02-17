@@ -20,6 +20,7 @@
     "@planetarium/account-web": "file:../sphere/packages/account-web",
     "@planetarium/sign": "^0.0.12",
     "@planetarium/tx": "^0.47.0",
+    "ethers": "5",
     "formik": "^2.2.9",
     "framer-motion": "^9.0.2",
     "react": "^18.2.0",

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { getLayout, Page } from './layouts/DefaultLayout';
 import { AuthenticatePage, ErrorPage } from './pages';
+import { MainPage } from './pages/Main';
 import { useAccountState, useMutations, useWorker } from './store/main';
 import { WorkerResultMessage } from './types/message';
 
@@ -28,6 +29,8 @@ function App() {
     Page = ErrorPage;
   } else if (!authenticated) {
     Page = AuthenticatePage;
+  } else {
+    Page = MainPage;
   }
 
   const Layout = getLayout(Page);
