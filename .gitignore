@@ -31,3 +31,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Worker should be built
+public/worker.js
+*.tsbuildinfo

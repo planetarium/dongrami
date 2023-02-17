@@ -1,10 +1,5 @@
-import { Container } from '@chakra-ui/react'
-import React from 'react'
+import { Container } from '@chakra-ui/react';
 
 export const ActionForm = () => {
-  return (
-    <Container bg='red.300'>
-        ActionForm
-    </Container>
-  )
-}
+  return <Container>ActionForm</Container>;
+};

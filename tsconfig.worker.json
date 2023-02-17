@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "./public",
+    "moduleResolution": "classic",
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": [
+      "ES2015",
+      "WebWorker"
+    ]
+  },
+  "include": [
+    "src/worker.ts"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}
