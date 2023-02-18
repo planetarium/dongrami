@@ -33,7 +33,7 @@ dist-ssr
 *.sw?
 
 # Worker should be built
-public/worker.js
+public/**/*.js
 *.tsbuildinfo
 
 # GraphQL

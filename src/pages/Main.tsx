@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import { AddressSection } from '../sections/Address';
 import { EndpointSection } from '../sections/Endpoint';
 
@@ -7,6 +7,8 @@ export function MainPage() {
     <Flex gap="3" flexDir="column">
       <AddressSection />
       <EndpointSection />
+
+      <Button w="full">Submit</Button>
     </Flex>
   );
 }

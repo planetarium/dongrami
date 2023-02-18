@@ -1,13 +1,8 @@
 import { Box, Heading } from '@chakra-ui/react';
 import { useState } from 'react';
 import { EndpointSelect } from '../components/EndpointSelect';
+import { EndpointType } from '../store/endpoint';
 import { EndpointInfoSecion } from './EndpointInfo';
-
-export type EndpointType = {
-  label: string;
-  value: string;
-  lastIndex: number | undefined;
-};
 
 export function EndpointSection() {
   const [endpoint, setEndpoint] = useState<EndpointType | undefined>();

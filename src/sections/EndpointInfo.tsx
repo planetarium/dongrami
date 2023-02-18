@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { Play } from '../assets/icons';
-import { EndpointType } from './Endpoint';
+import { EndpointType } from '../store/endpoint';
 
 type EndpointInfoSectionProps = {
   endpoint: EndpointType;
