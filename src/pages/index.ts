@@ -1,4 +1,4 @@
-import { AuthenticatePage } from './Authenticate';
-import { ErrorPage } from './Error';
+import { AuthenticatePage } from './authenticate';
+import { ErrorPage } from './error';
 
 export { AuthenticatePage, ErrorPage };

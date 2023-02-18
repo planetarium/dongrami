@@ -1,0 +1,5 @@
+query getActivationStatus($address: Address!) {
+  activationStatus {
+    addressActivated(address: $address)
+  }
+}

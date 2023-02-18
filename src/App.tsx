@@ -1,14 +1,19 @@
 import { useEffect } from 'react';
 import { getLayout, Page } from './layouts/DefaultLayout';
 import { AuthenticatePage, ErrorPage } from './pages';
-import { MainPage } from './pages/Main';
-import { useAccountState, useMutations, useWorker } from './store/main';
+import { MainPage } from './pages/main';
+import { UnlockPage } from './pages/unlock';
+import { useAccount, useAccountState, useMainMutations } from './store/main';
+import { useWorker, useWorkerMutations } from './store/worker';
 import { WorkerResultMessage } from './types/message';
 
 function App() {
   const worker = useWorker();
-  const { setWorker, setMessage } = useMutations();
+  const account = useAccount();
   const authenticated = useAccountState();
+
+  const { setMessage } = useMainMutations();
+  const { setWorker } = useWorkerMutations();
 
   useEffect(() => {
     if (!worker && window.Worker) {
@@ -28,7 +33,7 @@ function App() {
   if (!window.Worker) {
     Page = ErrorPage;
   } else if (!authenticated) {
-    Page = AuthenticatePage;
+    Page = account ? UnlockPage : AuthenticatePage;
   } else {
     Page = MainPage;
   }

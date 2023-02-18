@@ -35,3 +35,7 @@ dist-ssr
 # Worker should be built
 public/worker.js
 *.tsbuildinfo
+
+# GraphQL
+schema.graphql
+/src/graphql
