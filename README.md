@@ -89,6 +89,8 @@ Now you can sign a transaction.
 
 #### Unlock Page
 
+![Unlock Page - Default](./docs/images/unlock/index.png)
+
 > **Note**  
 > Private key is stored in **browser-inaccessible memory**.
 > Passphrase is temporary stored only for unlocking the private key. After unlocking, passphrase is erased.
