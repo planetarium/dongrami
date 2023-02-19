@@ -22,12 +22,7 @@
     "jsx": "react-jsx",
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "index.ts"
-  ],
-  "exclude": [
-    "src/worker.ts"
+    "src"
   ],
   "references": [
     {

@@ -18,6 +18,9 @@ import { useAccount, useAccountState, useMainMutations } from './store/main';
 import { useWorker, useWorkerMutations } from './store/worker';
 import { WorkerResultMessage } from './types/message';
 
+import './styles/index.css';
+import Worker from './worker?worker';
+
 type GraphQLBody<T> = {
   query: string;
   variables: T;
@@ -60,9 +63,7 @@ function createWorker(
   setMessage: (message: WorkerResultMessage) => void
 ) {
   if (!worker && window.Worker) {
-    const _worker = new Worker(new URL('../worker.js', import.meta.url), {
-      type: 'module',
-    });
+    const _worker = new Worker();
 
     _worker.onmessage = async (e: MessageEvent<WorkerResultMessage>) => {
       setMessage(e.data);
