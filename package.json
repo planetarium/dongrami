@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:force": "vite build --force",
     "preview": "vite preview",
+    "prepare": "yarn codegen",
     "codegen": "graphql-codegen --config graphql/config.cjs"
   },
   "dependencies": {

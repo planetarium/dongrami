@@ -1,4 +1,4 @@
-import { Center, Grid, GridItem } from '@chakra-ui/react';
+import { Center, Grid } from '@chakra-ui/react';
 import { PropsWithChildren } from 'react';
 import { Title } from '../components/Title';
 
@@ -21,9 +21,7 @@ export function MainLayout({ children }: PropsWithChildren) {
         gap="4"
         templateColumns={select('1fr', '1fr 1fr')}
       >
-        <GridItem colSpan={select(1, 2)}>
-          <Title />
-        </GridItem>
+        <Title />
         {children}
       </Grid>
     </Center>

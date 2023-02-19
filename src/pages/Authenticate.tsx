@@ -115,6 +115,7 @@ export function AuthenticatePage() {
             type="text"
             readOnly
             value={keyFile ? keyFile.name : ''}
+            placeholder="Select a keyfile..."
             onChange={() => {
               void 0;
             }}
@@ -132,6 +133,7 @@ export function AuthenticatePage() {
             type="password"
             value={passphrase}
             onChange={(e) => setPassphrase(e.target.value)}
+            placeholder="Passphrase"
             disabled={!keystore}
           />
         </InputGroup>
