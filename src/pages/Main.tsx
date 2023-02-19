@@ -1,25 +1,30 @@
-import { Button, Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
+import { useState } from 'react';
+import { MainLayout } from '../layouts/MainLayout';
 import { AddressSection } from '../sections/Address';
 import { EndpointSection } from '../sections/Endpoint';
-import { useMainMutations } from '../store/main';
-
+import { SendSection } from '../sections/SendSection';
+import { EndpointType } from '../types/endpoint';
 export function MainPage() {
-  const { clear } = useMainMutations();
+  const [endpoint, setEndpoint] = useState<EndpointType | undefined>();
+  const endpointState = { endpoint, setEndpoint };
 
   return (
-    <Flex gap="3" flexDir="column">
-      <Flex gap="2" justifyContent="space-between" alignItems="center">
-        <Heading as="h2" size="lg">
-          Sign Transaction
-        </Heading>
-        <Button size="sm" onClick={clear}>
-          Use another key
-        </Button>
+    <>
+      <Flex gap="3" flexDir="column">
+        <Box>
+          <Flex gap="2" justifyContent="space-between" alignItems="center">
+            <Heading as="h2" size="lg">
+              Sign Transaction
+            </Heading>
+          </Flex>
+          <AddressSection />
+        </Box>
+        <EndpointSection {...endpointState} />
       </Flex>
-      <AddressSection />
-      <EndpointSection />
-
-      <Button w="full">Submit</Button>
-    </Flex>
+      {endpoint && <SendSection />}
+    </>
   );
 }
+
+MainPage.Layout = MainLayout;

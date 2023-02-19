@@ -1,61 +1,20 @@
-import axios, { AxiosResponse } from 'axios';
 import { useEffect } from 'react';
-import {
-  GetLastBlockIndexDocument,
-  GetLastBlockIndexQuery,
-  GetLastBlockIndexQueryVariables,
-} from './graphql/sdk.main';
 import { getLayout, Page } from './layouts/DefaultLayout';
 import { AuthenticatePage, ErrorPage } from './pages';
 import { MainPage } from './pages/main';
 import { UnlockPage } from './pages/unlock';
 import {
-  EndpointType,
   useEndpointMutations,
   useEndpoints,
+  useTempEndpoint,
 } from './store/endpoint';
 import { useAccount, useAccountState, useMainMutations } from './store/main';
 import { useWorker, useWorkerMutations } from './store/worker';
 import { WorkerResultMessage } from './types/message';
 
 import './styles/index.css';
+import { loadAllEndpointHealth } from './utils/endpoint';
 import Worker from './worker?worker';
-
-type GraphQLBody<T> = {
-  query: string;
-  variables: T;
-};
-
-async function loadEndpointHealth(
-  endpoints: EndpointType[],
-  setEndpoints: (endpoints: EndpointType[]) => void
-) {
-  const newEndpoints = await Promise.all(
-    // FIXME: Type Definition is dirty
-    endpoints.map(async (endpoint) => {
-      try {
-        const {
-          data: { data },
-        } = await axios.post<
-          never,
-          AxiosResponse<{ data: GetLastBlockIndexQuery }>,
-          GraphQLBody<GetLastBlockIndexQueryVariables>
-        >(endpoint.value, {
-          query: GetLastBlockIndexDocument,
-          variables: { offset: 0 },
-        });
-        const result = data.chainQuery.blockQuery?.blocks[0].index;
-        return {
-          ...endpoint,
-          lastIndex: result,
-        };
-      } catch (e) {
-        return endpoint;
-      }
-    })
-  );
-  setEndpoints(newEndpoints);
-}
 
 function createWorker(
   worker: Worker | null,
@@ -78,10 +37,11 @@ function App() {
   const account = useAccount();
   const authenticated = useAccountState();
   const endpoints = useEndpoints();
+  const tempEndpoint = useTempEndpoint();
 
   const { setMessage } = useMainMutations();
   const { setWorker } = useWorkerMutations();
-  const { setEndpoints } = useEndpointMutations();
+  const { setEndpoints, setTempEndpoint } = useEndpointMutations();
 
   useEffect(
     () => createWorker(worker, setWorker, setMessage),
@@ -89,10 +49,21 @@ function App() {
   );
 
   useEffect(() => {
-    void loadEndpointHealth(endpoints, setEndpoints);
+    void loadAllEndpointHealth(
+      endpoints,
+      setEndpoints,
+      tempEndpoint,
+      setTempEndpoint
+    );
 
     const interval = setInterval(
-      () => loadEndpointHealth(endpoints, setEndpoints),
+      () =>
+        loadAllEndpointHealth(
+          endpoints,
+          setEndpoints,
+          tempEndpoint,
+          setTempEndpoint
+        ),
       10000
     );
 

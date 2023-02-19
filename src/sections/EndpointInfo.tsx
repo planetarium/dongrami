@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { Play } from '../assets/icons';
-import { useEndpoints, useLastIndex } from '../store/endpoint';
+import { useEndpoints, useLastIndex, useTempEndpoint } from '../store/endpoint';
 
 type EndpointInfoSectionProps = {
   url: string;
@@ -19,12 +19,19 @@ type EndpointInfoSectionProps = {
 
 export function EndpointInfoSecion({ url }: EndpointInfoSectionProps) {
   const { isOpen, onToggle } = useDisclosure();
-  const endpoint = useEndpoints().find((e) => e.value === url);
+  const endpoints = useEndpoints();
+  const tempEndpoint = useTempEndpoint();
+  const endpoint = (
+    tempEndpoint ? [...endpoints, tempEndpoint] : endpoints
+  ).find((e) => e.value === url);
+
   const lastIndex = useLastIndex();
 
   if (!endpoint) {
     return null;
   }
+
+  const open = isOpen ? 'block' : 'none';
 
   const indexDiff = endpoint.lastIndex
     ? lastIndex - endpoint.lastIndex
@@ -42,6 +49,7 @@ export function EndpointInfoSecion({ url }: EndpointInfoSectionProps) {
           _hover={{
             bgColor: 'gray.100',
           }}
+          display={['block', 'block', 'block', 'block', 'none']}
         />
         <Heading as="h3" size="md">
           Endpoint Info
@@ -49,8 +57,8 @@ export function EndpointInfoSecion({ url }: EndpointInfoSectionProps) {
         <Circle bgColor={status ? 'green.500' : 'red.500'} size="3" />
       </Flex>
       <Grid
-        display={isOpen ? 'grid' : 'none'}
-        ml="6"
+        display={[open, open, open, open, 'grid']}
+        ml={['6', '6', '6', '6', 0]}
         mt="1"
         gap="1"
         templateColumns="auto 1fr"

@@ -1,15 +1,12 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-
-export type EndpointType = {
-  label: string;
-  value: string;
-  lastIndex: number | undefined;
-};
+import { EndpointType } from '../types/endpoint';
 
 type EndpointState = {
   endpoints: EndpointType[];
+  tempEndpoint?: EndpointType;
   setEndpoints: (endpoints: EndpointType[]) => void;
+  setTempEndpoint: (endpoint: EndpointType) => void;
 };
 
 const useEndpointState = create<EndpointState>()(
@@ -68,17 +65,28 @@ const useEndpointState = create<EndpointState>()(
         lastIndex: undefined,
       },
     ],
-    setEndpoints: (endpoints: EndpointType[]) => set({ endpoints }),
+    setEndpoints: (endpoints: EndpointType[]) =>
+      set((state) => ({ tempEndpoint: state.tempEndpoint, endpoints })),
+    setTempEndpoint: (endpoint: EndpointType) =>
+      set((state) => ({ endpoints: state.endpoints, tempEndpoint: endpoint })),
   }))
 );
 
 export const useEndpoints = () => useEndpointState((state) => state.endpoints);
+export const useTempEndpoint = () =>
+  useEndpointState((state) => state.tempEndpoint);
 export const useLastIndex = () =>
-  useEndpointState((state) =>
-    Math.max(...state.endpoints.map((e) => e.lastIndex || 0))
-  );
+  useEndpointState((state) => {
+    if (!state.tempEndpoint) {
+      return Math.max(...state.endpoints.map((e) => e.lastIndex || 0));
+    }
+    return Math.max(
+      ...[...state.endpoints, state.tempEndpoint].map((e) => e.lastIndex || 0)
+    );
+  });
 
 export const useEndpointMutations = () =>
   useEndpointState((state) => ({
     setEndpoints: state.setEndpoints,
+    setTempEndpoint: state.setTempEndpoint,
   }));

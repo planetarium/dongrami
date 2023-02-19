@@ -76,14 +76,9 @@ export function UnlockPage() {
 
   return (
     <Flex as="form" gap="3" flexDir="column" onSubmit={authenticate}>
-      <Flex gap="2" justifyContent="space-between" alignItems="center">
-        <Heading as="h2" size="lg">
-          Unlock Keystore
-        </Heading>
-        <Button size="sm" onClick={clear}>
-          Use another key
-        </Button>
-      </Flex>
+      <Heading as="h2" size="lg">
+        Unlock Keystore
+      </Heading>
       <AddressSection />
       <FormControl isRequired>
         <FormLabel fontWeight="bold">Passphrase</FormLabel>
