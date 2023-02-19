@@ -1,11 +1,7 @@
-import { Button, Flex, Heading, Link, Spacer, Text } from '@chakra-ui/react';
+import { Flex, Heading, Link, Text } from '@chakra-ui/react';
 import { Planetarium } from '../assets/icons';
-import { useAccountState, useMainMutations } from '../store/main';
 
 export function Title() {
-  const state = useAccountState();
-  const { clear } = useMainMutations();
-
   return (
     <Flex alignItems="center" gap="4">
       <Heading as="h1" size="xl">
@@ -28,19 +24,6 @@ export function Title() {
         </Link>
         &nbsp;Tx Signer
       </Text>
-      <Spacer />
-      {state && (
-        <Button
-          size="sm"
-          onClick={() => clear()}
-          _hover={{
-            bgColor: 'red.500',
-            color: 'white',
-          }}
-        >
-          Disconnect Key
-        </Button>
-      )}
     </Flex>
   );
 }

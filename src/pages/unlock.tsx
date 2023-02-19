@@ -8,16 +8,14 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Text,
   useToast,
 } from '@chakra-ui/react';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getAccountFromV3 } from '@planetarium/account-web';
-import { computeAddress } from 'ethers/lib/utils';
 import { FormEvent, useState } from 'react';
+import { AddressSection } from '../sections/Address';
 import { useKeystore, useMainMutations, usePublicKey } from '../store/main';
-import { HexToUint8Array } from '../utils/Uint8Array';
 
 export function UnlockPage() {
   const keystore = useKeystore();
@@ -79,26 +77,16 @@ export function UnlockPage() {
   return (
     <Flex as="form" gap="3" flexDir="column" onSubmit={authenticate}>
       <Flex gap="2" justifyContent="space-between" alignItems="center">
-        <Heading as="h2" size="md">
+        <Heading as="h2" size="lg">
           Unlock Keystore
         </Heading>
         <Button size="sm" onClick={clear}>
           Use another key
         </Button>
       </Flex>
-      <Flex gap="2">
-        <Text whiteSpace="nowrap">Address</Text>
-        <Text
-          fontWeight="bold"
-          overflow="hidden"
-          whiteSpace="nowrap"
-          textOverflow="ellipsis"
-        >
-          {computeAddress(HexToUint8Array(publicKey))}
-        </Text>
-      </Flex>
+      <AddressSection />
       <FormControl isRequired>
-        <FormLabel>Passphrase</FormLabel>
+        <FormLabel fontWeight="bold">Passphrase</FormLabel>
         <InputGroup>
           <InputLeftElement pointerEvents="none">
             <Icon as={FontAwesomeIcon} icon={faKey} textColor="gray.500" />

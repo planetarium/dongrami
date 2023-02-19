@@ -8,15 +8,13 @@ export function EndpointSection() {
   const [endpoint, setEndpoint] = useState<EndpointType | undefined>();
   const endpointState = { endpoint, setEndpoint };
 
-  console.log(endpoint);
-
   return (
     <Box>
       <Heading as="h2" size="lg" mr="2" mb="2">
         Endpoint
       </Heading>
       <EndpointSelect {...endpointState} />
-      {endpoint && <EndpointInfoSecion endpoint={endpoint} />}
+      {endpoint && <EndpointInfoSecion url={endpoint.value} />}
     </Box>
   );
 }

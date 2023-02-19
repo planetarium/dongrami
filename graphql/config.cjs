@@ -12,7 +12,7 @@ const config = {
       plugins: [
         'typescript',
         'typescript-operations',
-        'typescript-graphql-request',
+        'typescript-react-query',
       ],
     },
   },
