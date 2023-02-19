@@ -1,5 +1,6 @@
 import { Center, Container, Flex } from '@chakra-ui/react';
 import { ComponentType, PropsWithChildren } from 'react';
+import { Title } from '../components/Title';
 
 export type Page = ComponentType & {
   Layout?: React.FC<PropsWithChildren>;
@@ -24,6 +25,7 @@ export function DefaultLayout({ children }: PropsWithChildren) {
         p="6"
         gap="4"
       >
+        <Title />
         {children}
       </Container>
     </Center>

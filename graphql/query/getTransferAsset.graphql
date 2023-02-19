@@ -1,0 +1,14 @@
+query getTransferAsset(
+  $sender: Address!
+  $receiver: Address!
+  $amount: String!
+) {
+  actionQuery {
+    transferAsset(
+      sender: $sender
+      recipient: $receiver
+      currency: NCG
+      amount: $amount
+    )
+  }
+}

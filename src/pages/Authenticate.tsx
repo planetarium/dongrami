@@ -1,6 +1,6 @@
 import {
-  Box,
   Button,
+  Flex,
   FormControl,
   FormLabel,
   Icon,
@@ -10,15 +10,12 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import { faFile } from '@fortawesome/free-regular-svg-icons';
+import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getAccountFromV3 } from '@planetarium/account-web';
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import {
-  useKeystore,
-  useMessage,
-  useMutations,
-  useWorker,
-} from '../store/main';
+import { useKeystore, useMainMutations, useMessage } from '../store/main';
+import { useWorker } from '../store/worker';
 import { readKeyFile } from '../worker/handlers';
 
 export function AuthenticatePage() {
@@ -26,10 +23,10 @@ export function AuthenticatePage() {
   const message = useMessage();
   const keystore = useKeystore();
 
-  const { setKeystore, setAccount } = useMutations();
+  const { setKeystore, setAccount } = useMainMutations();
 
   const [keyFile, setKeyFile] = useState<File | null>(null);
-  const [passsphrase, setPassphrase] = useState<string>('');
+  const [passphrase, setPassphrase] = useState<string>('');
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -70,7 +67,7 @@ export function AuthenticatePage() {
       return;
     }
 
-    if (!passsphrase) {
+    if (!passphrase) {
       setLoading(false);
       toast({
         title: 'Error',
@@ -81,8 +78,8 @@ export function AuthenticatePage() {
     }
 
     try {
-      const account = await getAccountFromV3(keystore, passsphrase);
-      setAccount(account);
+      const account = getAccountFromV3(keystore, passphrase);
+      setAccount(account, await account.getPublicKey());
     } catch (e: unknown) {
       setLoading(false);
 
@@ -107,56 +104,56 @@ export function AuthenticatePage() {
   };
 
   return (
-    <Box p="3">
-      <form onSubmit={authenticate}>
-        <FormControl mt="3" isRequired>
-          <FormLabel>Web3 Secret Storage File</FormLabel>
-          <InputGroup>
-            <InputLeftElement pointerEvents="none">
-              <Icon as={FontAwesomeIcon} icon={faFile} textColor="gray.500" />
-            </InputLeftElement>
-            <Input
-              type="text"
-              readOnly
-              value={keyFile ? keyFile.name : ''}
-              onChange={() => {
-                void 0;
-              }}
-              onClick={() =>
-                inputFileRef.current && inputFileRef.current.click()
-              }
-            />
-          </InputGroup>
-        </FormControl>
-        <FormControl mt="3" isRequired>
-          <FormLabel>Passphrase</FormLabel>
+    <Flex as="form" gap="3" flexDir="column" onSubmit={authenticate}>
+      <FormControl isRequired>
+        <FormLabel>Web3 Secret Storage File</FormLabel>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">
+            <Icon as={FontAwesomeIcon} icon={faFile} textColor="gray.500" />
+          </InputLeftElement>
+          <Input
+            type="text"
+            readOnly
+            value={keyFile ? keyFile.name : ''}
+            onChange={() => {
+              void 0;
+            }}
+            onClick={() => inputFileRef.current && inputFileRef.current.click()}
+          />
+        </InputGroup>
+      </FormControl>
+      <FormControl isRequired>
+        <FormLabel>Passphrase</FormLabel>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">
+            <Icon as={FontAwesomeIcon} icon={faKey} textColor="gray.500" />
+          </InputLeftElement>
           <Input
             type="password"
-            value={passsphrase}
+            value={passphrase}
             onChange={(e) => setPassphrase(e.target.value)}
             disabled={!keystore}
           />
-        </FormControl>
-        <Input
-          type="file"
-          display="none"
-          ref={inputFileRef}
-          onChange={(e) => {
-            if (e.target.files && e.target.files.length === 1) {
-              setKeyFile(e.target.files[0]);
-            }
-          }}
-        />
-        <Button
-          mt="3"
-          w="full"
-          type="submit"
-          isDisabled={!keystore || !passsphrase}
-          isLoading={isLoading}
-        >
-          Submit
-        </Button>
-      </form>
-    </Box>
+        </InputGroup>
+      </FormControl>
+      <Input
+        type="file"
+        display="none"
+        ref={inputFileRef}
+        onChange={(e) => {
+          if (e.target.files && e.target.files.length === 1) {
+            setKeyFile(e.target.files[0]);
+          }
+        }}
+      />
+      <Button
+        w="full"
+        type="submit"
+        isDisabled={!keystore || !passphrase}
+        isLoading={isLoading}
+      >
+        Authenticate
+      </Button>
+    </Flex>
   );
 }

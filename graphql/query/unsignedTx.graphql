@@ -1,0 +1,9 @@
+query unsignedTx($publicKey: String!, $plainValue: String!, $nonce: Long) {
+  transaction {
+    unsignedTransaction(
+      publicKey: $publicKey
+      plainValue: $plainValue
+      nonce: $nonce
+    )
+  }
+}
