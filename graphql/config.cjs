@@ -15,6 +15,15 @@ const config = {
         'typescript-graphql-request',
       ],
     },
+    'src/graphql/sdk.action.ts': {
+      schema: ['https://9c-main-full-state.planetarium.dev/graphql'],
+      documents: 'graphql/query/actions.graphql',
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-graphql-request',
+      ],
+    },
   },
 };
 

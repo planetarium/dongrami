@@ -1,0 +1,154 @@
+query activateAccount($activationCode: String!) {
+  actionQuery {
+    activateAccount(activationCode: $activationCode)
+  }
+}
+
+query claimWorldBossKillReward($avatarAddress: Address!) {
+  actionQuery {
+    claimWorldBossKillReward(avatarAddress: $avatarAddress)
+  }
+}
+
+query claimRaidReward($avatarAddress: Address!) {
+  actionQuery {
+    claimRaidReward(avatarAddress: $avatarAddress)
+  }
+}
+
+query claimStakeReward($avatarAddress: Address) {
+  actionQuery {
+    claimStakeReward(avatarAddress: $avatarAddress)
+  }
+}
+
+query createAvatar(
+  $index: Int!
+  $name: String!
+  $hair: Int = 0
+  $lens: Int = 0
+  $ear: Int = 0
+  $tail: Int = 0
+) {
+  actionQuery {
+    createAvatar(
+      index: $index
+      name: $name
+      hair: $hair
+      lens: $lens
+      ear: $ear
+      tail: $tail
+    )
+  }
+}
+
+query grinding(
+  $avatarAddress: Address!
+  $equipmentIds: [Guid]!
+  $chargeAp: Boolean
+) {
+  actionQuery {
+    grinding(
+      avatarAddress: $avatarAddress
+      equipmentIds: $equipmentIds
+      chargeAp: $chargeAp
+    )
+  }
+}
+
+query migrateMonsterCollection($avatarAddress: Address) {
+  actionQuery {
+    migrateMonsterCollection(avatarAddress: $avatarAddress)
+  }
+}
+
+query patchTableSheet($tableName: String!, $tableCsv: String!) {
+  actionQuery {
+    patchTableSheet(tableName: $tableName, tableCsv: $tableCsv)
+  }
+}
+
+query prepareRewardAssets(
+  $rewardPoolAddress: Address!
+  $assets: [FungibleAssetValueInputType!]!
+) {
+  actionQuery {
+    prepareRewardAssets(rewardPoolAddress: $rewardPoolAddress, assets: $assets)
+  }
+}
+
+query raid(
+  $avatarAddress: Address!
+  $equipmentIds: [Guid] = []
+  $costumeIds: [Guid] = []
+  $foodIds: [Guid] = []
+  $payNcg: Boolean = false
+  $runeSlotInfos: [RuneSlotInfoInputType!] = []
+) {
+  actionQuery {
+    raid(
+      avatarAddress: $avatarAddress
+      equipmentIds: $equipmentIds
+      costumeIds: $costumeIds
+      foodIds: $foodIds
+      payNcg: $payNcg
+      runeSlotInfos: $runeSlotInfos
+    )
+  }
+}
+
+query runeEnhancement($avatarAddress: Address!, $runeId: Int!, $tryCount: Int) {
+  actionQuery {
+    runeEnhancement(
+      avatarAddress: $avatarAddress
+      runeId: $runeId
+      tryCount: $tryCount
+    )
+  }
+}
+
+query stake($amount: BigInt) {
+  actionQuery {
+    stake(amount: $amount)
+  }
+}
+
+query transferAsset(
+  $sender: Address!
+  $recipient: Address!
+  $amount: String!
+  $currency: CurrencyEnum!
+  $memo: String
+) {
+  actionQuery {
+    transferAsset(
+      sender: $sender
+      recipient: $recipient
+      amount: $amount
+      currency: $currency
+      memo: $memo
+    )
+  }
+}
+
+query transferAssets(
+  $sender: Address!
+  $recipients: [RecipientsInputType!]!
+  $memo: String
+) {
+  actionQuery {
+    transferAssets(sender: $sender, recipients: $recipients, memo: $memo)
+  }
+}
+
+query unlockEquipmentRecipe($avatarAddress: Address!, $recipeIds: [Int]!) {
+  actionQuery {
+    unlockEquipmentRecipe(avatarAddress: $avatarAddress, recipeIds: $recipeIds)
+  }
+}
+
+query unlockWorld($avatarAddress: Address!, $worldIds: [Int]!) {
+  actionQuery {
+    unlockWorld(avatarAddress: $avatarAddress, worldIds: $worldIds)
+  }
+}

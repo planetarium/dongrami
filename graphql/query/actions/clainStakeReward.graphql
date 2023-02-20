@@ -1,5 +1,0 @@
-query claimStakeReward($avatarAddress: Address) {
-  actionQuery {
-    claimStakeReward(avatarAddress: $avatarAddress)
-  }
-}

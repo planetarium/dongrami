@@ -1,9 +1,0 @@
-query runeEnhancement($avatarAddress: Address!, $runeId: Int!, $tryCount: Int) {
-  actionQuery {
-    runeEnhancement(
-      avatarAddress: $avatarAddress
-      runeId: $runeId
-      tryCount: $tryCount
-    )
-  }
-}

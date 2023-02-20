@@ -1,9 +1,0 @@
-query transferAssets(
-  $sender: Address!
-  $recipients: [RecipientsInputType!]!
-  $memo: String
-) {
-  actionQuery {
-    transferAssets(sender: $sender, recipients: $recipients, memo: $memo)
-  }
-}

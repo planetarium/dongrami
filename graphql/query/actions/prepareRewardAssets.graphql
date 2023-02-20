@@ -1,8 +1,0 @@
-query prepareRewardAssets(
-  $rewardPoolAddress: Address!
-  $assets: [FungibleAssetValueInputType!]!
-) {
-  actionQuery {
-    prepareRewardAssets(rewardPoolAddress: $rewardPoolAddress, assets: $assets)
-  }
-}

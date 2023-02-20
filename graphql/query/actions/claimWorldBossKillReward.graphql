@@ -1,5 +1,0 @@
-query claimWorldBossKillReward($avatarAddress: Address!) {
-  actionQuery {
-    claimWorldBossKillReward(avatarAddress: $avatarAddress)
-  }
-}
