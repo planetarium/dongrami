@@ -11,30 +11,22 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { Play } from '../assets/icons';
-import { useEndpoints, useLastIndex, useTempEndpoint } from '../store/endpoint';
+import { useCurrentEndpoint, useLastIndex } from '../store/endpoint';
 
-type EndpointInfoSectionProps = {
-  url: string;
-};
-
-export function EndpointInfoSecion({ url }: EndpointInfoSectionProps) {
+export function EndpointInfoSecion() {
   const { isOpen, onToggle } = useDisclosure();
-  const endpoints = useEndpoints();
-  const tempEndpoint = useTempEndpoint();
-  const endpoint = (
-    tempEndpoint ? [...endpoints, tempEndpoint] : endpoints
-  ).find((e) => e.value === url);
+  const currentEndpoint = useCurrentEndpoint();
 
   const lastIndex = useLastIndex();
 
-  if (!endpoint) {
+  if (!currentEndpoint) {
     return null;
   }
 
   const open = isOpen ? 'block' : 'none';
 
-  const indexDiff = endpoint.lastIndex
-    ? lastIndex - endpoint.lastIndex
+  const indexDiff = currentEndpoint.lastIndex
+    ? lastIndex - currentEndpoint.lastIndex
     : -Infinity;
   const status = indexDiff !== -Infinity && indexDiff < 16;
 
@@ -70,8 +62,8 @@ export function EndpointInfoSecion({ url }: EndpointInfoSectionProps) {
           </Heading>
         </GridItem>
         <GridItem>
-          <Link href={endpoint.value} size="sm" wordBreak="break-all">
-            {endpoint.value}
+          <Link href={currentEndpoint.value} size="sm" wordBreak="break-all">
+            {currentEndpoint.value}
           </Link>
         </GridItem>
         <GridItem>
@@ -91,7 +83,7 @@ export function EndpointInfoSecion({ url }: EndpointInfoSectionProps) {
           </Heading>
         </GridItem>
         <GridItem>
-          <Text size="sm">{endpoint.lastIndex || 'N/A'}</Text>
+          <Text size="sm">{currentEndpoint.lastIndex || 'N/A'}</Text>
         </GridItem>
       </Grid>
     </Box>

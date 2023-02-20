@@ -1,0 +1,19 @@
+query raid(
+  $avatarAddress: Address!
+  $equipmentIds: [Guid] = []
+  $costumeIds: [Guid] = []
+  $foodIds: [Guid] = []
+  $payNcg: Boolean = false
+  $runeSlotInfos: [RuneSlotInfoInputType!] = []
+) {
+  actionQuery {
+    raid(
+      avatarAddress: $avatarAddress
+      equipmentIds: $equipmentIds
+      costumeIds: $costumeIds
+      foodIds: $foodIds
+      payNcg: $payNcg
+      runeSlotInfos: $runeSlotInfos
+    )
+  }
+}

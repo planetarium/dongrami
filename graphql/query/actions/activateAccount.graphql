@@ -1,0 +1,5 @@
+query activateAccount($activationCode: String!) {
+  actionQuery {
+    activateAccount(activationCode: $activationCode)
+  }
+}

@@ -1,0 +1,5 @@
+query unlockWorld($avatarAddress: Address!, $worldIds: [Int]!) {
+  actionQuery {
+    unlockWorld(avatarAddress: $avatarAddress, worldIds: $worldIds)
+  }
+}

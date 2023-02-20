@@ -1,0 +1,5 @@
+query migrateMonsterCollection($avatarAddress: Address) {
+  actionQuery {
+    migrateMonsterCollection(avatarAddress: $avatarAddress)
+  }
+}

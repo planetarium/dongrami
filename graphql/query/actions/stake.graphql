@@ -1,0 +1,5 @@
+query stake($amount: BigInt) {
+  actionQuery {
+    stake(amount: $amount)
+  }
+}

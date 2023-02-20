@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "yarn codegen && tsc && vite build",
     "preview": "vite preview",
     "prepare": "yarn codegen",
     "codegen": "graphql-codegen --config graphql/config.cjs"
@@ -18,7 +18,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "latest",
-    "@graphql-codegen/typescript-react-query": "^4.1.0",
     "@planetarium/account-web": "file:../sphere/packages/account-web",
     "@planetarium/sign": "^0.0.12",
     "@planetarium/tx": "^0.46.2",
@@ -30,6 +29,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^9.0.4",
     "graphql": "^16.6.0",
+    "graphql-request": "^5.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vite-plugin-svgr": "^2.4.0",
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^3.0.0",
     "@graphql-codegen/typescript": "^3.0.0",
+    "@graphql-codegen/typescript-graphql-request": "^4.5.8",
     "@graphql-codegen/typescript-operations": "^3.0.0",
     "@types/eslint": "^8",
     "@types/prettier": "^2",

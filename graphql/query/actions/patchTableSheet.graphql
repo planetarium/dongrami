@@ -1,0 +1,5 @@
+query patchTableSheet($tableName: String!, $tableCsv: String!) {
+  actionQuery {
+    patchTableSheet(tableName: $tableName, tableCsv: $tableCsv)
+  }
+}

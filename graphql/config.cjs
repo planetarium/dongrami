@@ -8,11 +8,11 @@ const config = {
     },
     'src/graphql/sdk.main.ts': {
       schema: ['https://9c-main-full-state.planetarium.dev/graphql'],
-      documents: 'graphql/query/*.graphql',
+      documents: 'graphql/query/**/*.graphql',
       plugins: [
         'typescript',
         'typescript-operations',
-        'typescript-react-query',
+        'typescript-graphql-request',
       ],
     },
   },

@@ -1,0 +1,5 @@
+query unlockEquipmentRecipe($avatarAddress: Address!, $recipeIds: [Int]!) {
+  actionQuery {
+    unlockEquipmentRecipe(avatarAddress: $avatarAddress, recipeIds: $recipeIds)
+  }
+}

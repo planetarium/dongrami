@@ -1,24 +1,20 @@
 import { CreatableSelect } from 'chakra-react-select';
-import { useEndpointMutations, useEndpoints } from '../store/endpoint';
-import { EndpointType } from '../types/endpoint';
+import {
+  useCurrentEndpoint,
+  useEndpointMutations,
+  useEndpoints,
+} from '../store/endpoint';
 import { loadSingleEndpointHealth } from '../utils/endpoint';
 
-type EndpointSectionProps = {
-  endpoint: EndpointType | undefined;
-  setEndpoint: (endpoint: EndpointType | undefined) => void;
-};
-
-export function EndpointSelect({
-  endpoint,
-  setEndpoint,
-}: EndpointSectionProps) {
+export function EndpointSelect() {
   const endpoints = useEndpoints();
-  const { setTempEndpoint } = useEndpointMutations();
+  const currentEndpoint = useCurrentEndpoint();
+  const { setTempEndpoint, setCurrentEndpoint } = useEndpointMutations();
 
   return (
     <CreatableSelect
-      value={endpoint || undefined}
-      onChange={(value) => value && setEndpoint(value)}
+      value={currentEndpoint || undefined}
+      onChange={(value) => value && setCurrentEndpoint(value.value)}
       placeholder="Endpoint Address"
       options={endpoints}
       onCreateOption={async (value) => {
@@ -28,7 +24,7 @@ export function EndpointSelect({
           lastIndex: undefined,
         };
         setTempEndpoint(await loadSingleEndpointHealth(newEndpoint));
-        setEndpoint(newEndpoint);
+        setCurrentEndpoint(newEndpoint.value);
       }}
     />
   );

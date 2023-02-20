@@ -1,0 +1,5 @@
+query claimRaidReward($avatarAddress: Address!) {
+  actionQuery {
+    claimRaidReward(avatarAddress: $avatarAddress)
+  }
+}

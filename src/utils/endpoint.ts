@@ -1,27 +1,14 @@
-import axios, { AxiosResponse } from 'axios';
-import {
-  GetLastBlockIndexDocument,
-  GetLastBlockIndexQuery,
-  GetLastBlockIndexQueryVariables,
-} from '../graphql/sdk.main';
+import { GraphQLClient } from 'graphql-request';
+import { getSdk } from '../graphql/sdk.main';
 import { EndpointType } from '../types/endpoint';
-import { GraphQLBody } from '../types/graphql';
 
-// FIXME: Type Definition is dirty
 export async function loadSingleEndpointHealth(
   endpoint: EndpointType
 ): Promise<EndpointType> {
   try {
-    const {
-      data: { data },
-    } = await axios.post<
-      never,
-      AxiosResponse<{ data: GetLastBlockIndexQuery }>,
-      GraphQLBody<GetLastBlockIndexQueryVariables>
-    >(endpoint.value, {
-      query: GetLastBlockIndexDocument,
-      variables: { offset: 0 },
-    });
+    const client = new GraphQLClient(endpoint.value);
+    const sdk = getSdk(client);
+    const data = await sdk.getLastBlockIndex({ offset: 0 });
     const result = data.chainQuery.blockQuery?.blocks[0].index as number;
     return {
       ...endpoint,

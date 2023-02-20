@@ -5,13 +5,22 @@ import { EndpointType } from '../types/endpoint';
 type EndpointState = {
   endpoints: EndpointType[];
   tempEndpoint?: EndpointType;
+  currentEndpointUrl: string;
   setEndpoints: (endpoints: EndpointType[]) => void;
   setTempEndpoint: (endpoint: EndpointType) => void;
+  setCurrentEndpoint: (endpoint: string) => void;
+};
+
+export const autoEndpoint: EndpointType = {
+  label: 'Auto Select',
+  value: '',
+  lastIndex: undefined,
 };
 
 const useEndpointState = create<EndpointState>()(
   devtools((set) => ({
     endpoints: [
+      autoEndpoint,
       {
         label: 'Main RPC - 1',
         value: 'http://9c-main-rpc-1.nine-chronicles.com/graphql',
@@ -65,10 +74,14 @@ const useEndpointState = create<EndpointState>()(
         lastIndex: undefined,
       },
     ],
+    tempEndpoint: undefined,
+    currentEndpointUrl: '',
     setEndpoints: (endpoints: EndpointType[]) =>
-      set((state) => ({ tempEndpoint: state.tempEndpoint, endpoints })),
+      set((state) => ({ ...state, endpoints })),
     setTempEndpoint: (endpoint: EndpointType) =>
-      set((state) => ({ endpoints: state.endpoints, tempEndpoint: endpoint })),
+      set((state) => ({ ...state, tempEndpoint: endpoint })),
+    setCurrentEndpoint: (endpoint: string) =>
+      set((state) => ({ ...state, currentEndpointUrl: endpoint })),
   }))
 );
 
@@ -84,9 +97,14 @@ export const useLastIndex = () =>
       ...[...state.endpoints, state.tempEndpoint].map((e) => e.lastIndex || 0)
     );
   });
+export const useCurrentEndpoint = () =>
+  useEndpointState((state) =>
+    state.endpoints.find((e) => e.value === state.currentEndpointUrl)
+  );
 
 export const useEndpointMutations = () =>
   useEndpointState((state) => ({
     setEndpoints: state.setEndpoints,
     setTempEndpoint: state.setTempEndpoint,
+    setCurrentEndpoint: state.setCurrentEndpoint,
   }));

@@ -1,0 +1,19 @@
+query createAvatar(
+  $index: Int!
+  $name: String!
+  $hair: Int = 0
+  $lens: Int = 0
+  $ear: Int = 0
+  $tail: Int = 0
+) {
+  actionQuery {
+    createAvatar(
+      index: $index
+      name: $name
+      hair: $hair
+      lens: $lens
+      ear: $ear
+      tail: $tail
+    )
+  }
+}
