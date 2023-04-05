@@ -115,11 +115,8 @@ export function AuthenticatePage() {
             type="text"
             readOnly
             value={keyFile ? keyFile.name : ''}
-            placeholder="Select a keyfile..."
-            onChange={() => {
-              void 0;
-            }}
-            onClick={() => inputFileRef.current && inputFileRef.current.click()}
+            placeholder="Select a key file..."
+            onClick={() => inputFileRef.current?.click()}
           />
         </InputGroup>
       </FormControl>

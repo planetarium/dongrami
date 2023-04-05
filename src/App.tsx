@@ -1,8 +1,6 @@
 import { useEffect } from 'react';
 import { getLayout, Page } from './layouts/DefaultLayout';
-import { AuthenticatePage, ErrorPage } from './pages';
-import { MainPage } from './pages/main';
-import { UnlockPage } from './pages/unlock';
+import { AuthenticatePage, ErrorPage, MainPage, UnlockPage } from './pages';
 import {
   useEndpointMutations,
   useEndpoints,

@@ -8,12 +8,15 @@ import {
   Input,
   Spacer,
 } from '@chakra-ui/react';
+import { useLib9c } from '../hooks/useLib9c';
 
-export function SendSection() {
+export function ActionSection() {
+  const lib9c = useLib9c();
+
   return (
     <Box>
       <Heading as="h2" size="lg">
-        Send
+        Create Action
       </Heading>
       <Flex as="form" gap="3" flexDir="column">
         <FormControl isRequired>
