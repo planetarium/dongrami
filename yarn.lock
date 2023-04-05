@@ -3518,9 +3518,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@planetarium/account-web@file:../sphere/packages/account-web::locator=dongrami%40workspace%3A.":
+"@planetarium/account-web@file:./account-web::locator=dongrami%40workspace%3A.":
   version: 0.0.38
-  resolution: "@planetarium/account-web@file:../sphere/packages/account-web#../sphere/packages/account-web::hash=a41955&locator=dongrami%40workspace%3A."
+  resolution: "@planetarium/account-web@file:./account-web#./account-web::hash=a41955&locator=dongrami%40workspace%3A."
   dependencies:
     "@noble/secp256k1": ^1.7.0
     buffer: ^6.0.3
@@ -5935,7 +5935,7 @@ __metadata:
     "@graphql-codegen/typescript": ^3.0.0
     "@graphql-codegen/typescript-operations": ^3.0.0
     "@graphql-codegen/typescript-react-query": ^4.1.0
-    "@planetarium/account-web": "file:../sphere/packages/account-web"
+    "@planetarium/account-web": "file:./account-web"
     "@planetarium/sign": ^0.0.12
     "@planetarium/tx": ^0.46.2
     "@tanstack/react-query": ^4.24.9

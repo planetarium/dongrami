@@ -42,3 +42,6 @@ schema.graphql
 
 # lib9c-wasm
 !lib9c-wasm/dist
+
+# account-web
+!account-web/dist

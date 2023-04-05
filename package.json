@@ -19,7 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "latest",
     "@graphql-codegen/typescript-react-query": "^4.1.0",
-    "@planetarium/account-web": "file:../sphere/packages/account-web",
+    "@planetarium/account-web": "file:./account-web",
     "@planetarium/sign": "^0.0.12",
     "@planetarium/tx": "^0.46.2",
     "@tanstack/react-query": "^4.24.9",
