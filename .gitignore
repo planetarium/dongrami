@@ -39,3 +39,6 @@ public/**/*.js
 # GraphQL
 schema.graphql
 /src/graphql
+
+# lib9c-wasm
+!lib9c-wasm/dist
