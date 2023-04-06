@@ -1,43 +1,29 @@
 import {
   Box,
   Button,
-  Flex,
   FormControl,
   FormLabel,
   Heading,
-  Input,
-  Spacer,
   Text,
 } from '@chakra-ui/react';
-import { useLib9c } from '../hooks/useLib9c';
 import { Select } from 'chakra-react-select';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { useLib9c } from '../hooks/useLib9c';
+import { getActions } from '../utils/lib9c';
 
 export function ActionSection() {
   const lib9c = useLib9c();
+
+  const [action, setAction] = useState<{ label: string; value: string } | null>(
+    null
+  );
 
   const actionTypes = useMemo(() => {
     if (!lib9c) {
       return [];
     }
 
-    return Object.keys(lib9c)
-      .filter((f) => !f.startsWith('deserialize'))
-      .filter((f) => f[0] === f[0].toLowerCase())
-      .filter((f) => !f.startsWith('_'))
-      .filter(
-        (f) =>
-          ![
-            'boot',
-            'default',
-            'attachSignature',
-            'buildUnsignedTransaction',
-            'serializeObjectAsDotnet',
-            'toHex',
-            'parseHex',
-          ].includes(f)
-      )
-      .map((f) => ({ label: f, value: f }));
+    return getActions(lib9c).map((f) => ({ label: f, value: f }));
   }, [lib9c]);
 
   if (!lib9c) {
@@ -53,6 +39,14 @@ export function ActionSection() {
     );
   }
 
+  // console.log(lib9c[action.value as keyof typeof lib9c].toString());
+  //
+  // function battle_arena(plainValue) {
+  //   return buildActionWrapper('battle_arena', plainValue);
+  // }
+  //
+  // FUCK
+
   return (
     <Box>
       <Heading as="h2" size="lg">
@@ -61,7 +55,11 @@ export function ActionSection() {
       <Box as="form">
         <FormControl mt="3" isRequired>
           <FormLabel>Action Type</FormLabel>
-          <Select options={actionTypes} />
+          <Select
+            options={actionTypes}
+            value={action}
+            onChange={(e) => setAction(e)}
+          />
         </FormControl>
         <Button mt="3" type="submit" w="full">
           Send

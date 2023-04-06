@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
-
-type Lib9cType = typeof import('lib9c-wasm');
+import { Lib9cType } from '../types/lib9c';
 
 export function useLib9c() {
   const once = useRef<boolean>(false);
