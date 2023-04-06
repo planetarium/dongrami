@@ -3520,14 +3520,14 @@ __metadata:
 
 "@planetarium/account-web@file:./account-web::locator=dongrami%40workspace%3A.":
   version: 0.0.38
-  resolution: "@planetarium/account-web@file:./account-web#./account-web::hash=a41955&locator=dongrami%40workspace%3A."
+  resolution: "@planetarium/account-web@file:./account-web#./account-web::hash=968797&locator=dongrami%40workspace%3A."
   dependencies:
     "@noble/secp256k1": ^1.7.0
     buffer: ^6.0.3
     ethers: ^5
   peerDependencies:
     "@planetarium/sign": "workspace:^"
-  checksum: bd8964c3e59fcf59a23ad8dc3029f5f3a0f38f4175e5d42591ccc7a479a65733616aeb47d998b5370d82efdf6c7e6c2852756178c992260d22ba1f2a11884380
+  checksum: 05e3a95e3de6f7faf5b6ace68decf95303e4ee22dbd700fbbfc97badc48b0abdcae199bb90768436b3cad7f2ed036fe58bcd764683ee8472d5a757880b977a07
   languageName: node
   linkType: hard
 
