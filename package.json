@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "prepare": "yarn codegen",
+    "prepare": "yarn codegen && node transform.cjs",
     "codegen": "graphql-codegen --config graphql/config.cjs"
   },
   "dependencies": {
