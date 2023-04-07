@@ -101,12 +101,11 @@ export function TransferSection() {
       customActions: [decode(customAction)],
     });
 
-    console.log('unsignedTx', encode(unsignedTx));
+    const encodedUnsignedTx = encode(unsignedTx);
 
-    const signedTx = await signTransaction(
-      Uint8ArrayToHex(encode(unsignedTx)),
-      account
-    );
+    console.log('unsignedTx', Uint8ArrayToHex(encodedUnsignedTx));
+
+    const signedTx = await signTransaction(encodedUnsignedTx, account);
 
     console.log('signedTx', signedTx);
 
