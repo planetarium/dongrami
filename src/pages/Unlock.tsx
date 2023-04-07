@@ -20,7 +20,7 @@ import { useKeystore, useMainMutations, usePublicKey } from '../store/main';
 export function UnlockPage() {
   const keystore = useKeystore();
   const publicKey = usePublicKey();
-  const { setAccount, clear } = useMainMutations();
+  const { setAccount } = useMainMutations();
 
   const [passphrase, setPassphrase] = useState<string>('');
   const [isLoading, setLoading] = useState<boolean>(false);

@@ -7,9 +7,9 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
-import { useMemo, useState } from 'react';
-import { useLib9c } from '../hooks/useLib9c';
-import { getActions } from '../utils/lib9c';
+import { useLib9c } from 'hooks/useLib9c';
+import { useState } from 'react';
+import actionDefs from '../../actions.json';
 
 export function ActionSection() {
   const lib9c = useLib9c();
@@ -18,13 +18,12 @@ export function ActionSection() {
     null
   );
 
-  const actionTypes = useMemo(() => {
-    if (!lib9c) {
-      return [];
-    }
-
-    return getActions(lib9c).map((f) => ({ label: f, value: f }));
-  }, [lib9c]);
+  const actionTypes = Object.keys(actionDefs)
+    .sort()
+    .map((a) => ({
+      label: a,
+      value: a,
+    }));
 
   if (!lib9c) {
     return (
@@ -38,14 +37,6 @@ export function ActionSection() {
       </Box>
     );
   }
-
-  // console.log(lib9c[action.value as keyof typeof lib9c].toString());
-  //
-  // function battle_arena(plainValue) {
-  //   return buildActionWrapper('battle_arena', plainValue);
-  // }
-  //
-  // FUCK
 
   return (
     <Box>

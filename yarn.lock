@@ -2797,6 +2797,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-codegen/plugin-helpers@npm:^4.1.0, @graphql-codegen/plugin-helpers@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "@graphql-codegen/plugin-helpers@npm:4.2.0"
+  dependencies:
+    "@graphql-tools/utils": ^9.0.0
+    change-case-all: 1.0.15
+    common-tags: 1.8.2
+    import-from: 4.0.0
+    lodash: ~4.17.0
+    tslib: ~2.5.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 5d26adc132026916db061d23b06fc2c329f372f19ecf56e39bd2b30082bff642f2030cd6dc0bad8d2d3ab781c1e145384e040310a479b83d85ec804b2983646d
+  languageName: node
+  linkType: hard
+
 "@graphql-codegen/schema-ast@npm:^3.0.0":
   version: 3.0.0
   resolution: "@graphql-codegen/schema-ast@npm:3.0.0"
@@ -2807,6 +2823,35 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 834a698cfec7d59b0700a7385811e15591999b0ceb728cb3a38a73a2bd695771b38e4977df21e2d832075e8aecffd69649cc2412ebbccad53b16025f0f818834
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/schema-ast@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@graphql-codegen/schema-ast@npm:3.0.1"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^4.1.0
+    "@graphql-tools/utils": ^9.0.0
+    tslib: ~2.5.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 620aa67a4ae59ccb4609763b7347d05e2cec62bf1362be3e1e01fc00969cdbb858398542aa261128e5b5e3cb6808b77861bdcf82662e80326e72b418f25f465f
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/typescript-graphql-request@npm:^4.5.9":
+  version: 4.5.9
+  resolution: "@graphql-codegen/typescript-graphql-request@npm:4.5.9"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^3.0.0
+    "@graphql-codegen/visitor-plugin-common": 2.13.1
+    auto-bind: ~4.0.0
+    tslib: ~2.4.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    graphql-request: ^3.4.0 || ^4.0.0 || ~5.0.0 || ~5.1.0
+    graphql-tag: ^2.0.0
+  checksum: fe924b3d17a1aee8bc5022e4b6cc0b8acba81c5e3ebf410892472898e2e44823ff339f58d3354902d7a5f77e28ef57968d55b1623ba4884a74eed54bb14b66c3
   languageName: node
   linkType: hard
 
@@ -2840,6 +2885,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@graphql-codegen/typescript-resolvers@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "@graphql-codegen/typescript-resolvers@npm:3.2.0"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^4.2.0
+    "@graphql-codegen/typescript": ^3.0.3
+    "@graphql-codegen/visitor-plugin-common": 3.1.0
+    "@graphql-tools/utils": ^9.0.0
+    auto-bind: ~4.0.0
+    tslib: ~2.5.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: d866b95775c95d1685e832a1d24df2a1e98feb67f35ef20a5d590c42b7314307b48399531b0cdc004e0be1062769ffe1e1a4757863ed1ca1f575dcd5e08b014d
+  languageName: node
+  linkType: hard
+
 "@graphql-codegen/typescript@npm:^3.0.0":
   version: 3.0.0
   resolution: "@graphql-codegen/typescript@npm:3.0.0"
@@ -2852,6 +2913,21 @@ __metadata:
   peerDependencies:
     graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: a0b9c6aa41340e6489f1ba9be89700644f8c301353545d7386d2b630db7e3ed72c42b70174d840877d73c0be89c2e9e131c4cae0fb0120bc5efd993aba787d8a
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/typescript@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "@graphql-codegen/typescript@npm:3.0.3"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^4.2.0
+    "@graphql-codegen/schema-ast": ^3.0.1
+    "@graphql-codegen/visitor-plugin-common": 3.1.0
+    auto-bind: ~4.0.0
+    tslib: ~2.5.0
+  peerDependencies:
+    graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 5d292379b5f25f1df0dfdec62211f7e304a85910b6e30dcb28e89478dd15b565f05993913d9b8cf7f08b1e9166242f08e9cb68bd9688f486bd5eada7c6f82442
   languageName: node
   linkType: hard
 
@@ -2892,6 +2968,26 @@ __metadata:
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
   checksum: 1c3543754502798bf565a5951bcc2f5ad79a3f726ee8c1202e103cbba6c168f5849c4eadac0b87188c3d7430afb75d9013a0b97a75bb4cc4ec0b1c7b9fc7ec13
+  languageName: node
+  linkType: hard
+
+"@graphql-codegen/visitor-plugin-common@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@graphql-codegen/visitor-plugin-common@npm:3.1.0"
+  dependencies:
+    "@graphql-codegen/plugin-helpers": ^4.2.0
+    "@graphql-tools/optimize": ^1.3.0
+    "@graphql-tools/relay-operation-optimizer": ^6.5.0
+    "@graphql-tools/utils": ^9.0.0
+    auto-bind: ~4.0.0
+    change-case-all: 1.0.15
+    dependency-graph: ^0.11.0
+    graphql-tag: ^2.11.0
+    parse-filepath: ^1.0.2
+    tslib: ~2.5.0
+  peerDependencies:
+    graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+  checksum: 7532666c578680cda538d7b859ee7d5541113f3972f0f2396affa4dd6823a2e2d6f8b715c685912652b0906722dfafb4375c462aa3b4f991a12ec0a28f1b7ba7
   languageName: node
   linkType: hard
 
@@ -3359,6 +3455,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@maxswjeon/flattype@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@maxswjeon/flattype@npm:0.2.2"
+  checksum: 5ba41e2a7fba35564a5dcecda153b1e2d7450fb93ee1fa7d10faf443a606fc02639bf248d8412661d4ca73c0680a6d3b62af42061aaff35cb5357bb51b1b38c5
+  languageName: node
+  linkType: hard
+
 "@motionone/animation@npm:^10.15.1":
   version: 10.15.1
   resolution: "@motionone/animation@npm:10.15.1"
@@ -3424,14 +3527,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/hashes@npm:^1.1.2":
-  version: 1.2.0
-  resolution: "@noble/hashes@npm:1.2.0"
-  checksum: 8ca080ce557b8f40fb2f78d3aedffd95825a415ac8e13d7ffe3643f8626a8c2d99a3e5975b555027ac24316d8b3c02a35b8358567c0c23af681e6573602aa434
+"@noble/hashes@npm:^1.2.0":
+  version: 1.3.0
+  resolution: "@noble/hashes@npm:1.3.0"
+  checksum: d7ddb6d7c60f1ce1f87facbbef5b724cdea536fc9e7f59ae96e0fc9de96c8f1a2ae2bdedbce10f7dcc621338dfef8533daa73c873f2b5c87fa1a4e05a95c2e2e
   languageName: node
   linkType: hard
 
-"@noble/secp256k1@npm:^1.7.0":
+"@noble/secp256k1@npm:^1.7.0, @noble/secp256k1@npm:^1.7.1":
   version: 1.7.1
   resolution: "@noble/secp256k1@npm:1.7.1"
   checksum: d2301f1f7690368d8409a3152450458f27e54df47e3f917292de3de82c298770890c2de7c967d237eff9c95b70af485389a9695f73eb05a43e2bd562d18b18cb
@@ -3531,23 +3634,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@planetarium/sign@npm:^0.0.12":
-  version: 0.0.12
-  resolution: "@planetarium/sign@npm:0.0.12"
+"@planetarium/account@npm:^0.53.4":
+  version: 0.53.4
+  resolution: "@planetarium/account@npm:0.53.4"
   dependencies:
-    "@noble/hashes": ^1.1.2
-    bencodex: ^0.1.2
-    buffer: ^6.0.3
-  checksum: fd8bf1f4ea990d10d07bfd43994662ce7d5e01f1475a01711053dc6e0510837f324f8d6eaa4dfc802df3f64fb16c67450df0e626f661f9485e55f28d90dbae59
+    "@noble/hashes": ^1.2.0
+    "@noble/secp256k1": ^1.7.1
+  checksum: 21979c990617838cd1bd4774e904480262dbc37631dce327d84c9ff8b6f372482f4ea64500674a853e54b7cbc55d07e10127faa4c75585c15c14bc353b236785
   languageName: node
   linkType: hard
 
-"@planetarium/tx@npm:^0.46.2":
-  version: 0.46.2
-  resolution: "@planetarium/tx@npm:0.46.2"
+"@planetarium/bencodex@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@planetarium/bencodex@npm:0.2.2"
+  checksum: 48d4e32012ce7d798696ab78f9dcce9e7646bcf3fae4f9e45b00ae5c3aa7ce3f92ac4082dbee2b4e9466da86b9768ddebe418090ed790bcc5951c8dd37f2cd2b
+  languageName: node
+  linkType: hard
+
+"@planetarium/tx@npm:^0.53.4":
+  version: 0.53.4
+  resolution: "@planetarium/tx@npm:0.53.4"
   dependencies:
-    bencodex: ^0.1.1
-  checksum: ea78cdffdb19295c63f294e906903af41fba381e39ed29ea24a3fa8790b19f8503b4b6af29b0b3763ad7670a0bbf1d9f18ab91f4668fc48a4db64c76ff14568c
+    "@planetarium/account": ^0.53.4
+    "@planetarium/bencodex": ^0.2.2
+  checksum: cbb2a38748bae498d9390a6694094a445ab303fe196ac8bf3f579c6126655ae5bb7fc283e75760cb00a197b729843b3755a1a3a4abfbe19e8471f804845eff68
   languageName: node
   linkType: hard
 
@@ -3606,6 +3716,48 @@ __metadata:
     rollup:
       optional: true
   checksum: edea15e543bebc7dcac3b0ac8bc7b8e8e6dbd46e2864dbe5dd28072de1fbd5b0e10d545a610c0edaa178e8a7ac432e2a2a52e547ece1308471412caba47db8ce
+  languageName: node
+  linkType: hard
+
+"@rometools/cli-darwin-arm64@npm:12.0.0":
+  version: 12.0.0
+  resolution: "@rometools/cli-darwin-arm64@npm:12.0.0"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@rometools/cli-darwin-x64@npm:12.0.0":
+  version: 12.0.0
+  resolution: "@rometools/cli-darwin-x64@npm:12.0.0"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@rometools/cli-linux-arm64@npm:12.0.0":
+  version: 12.0.0
+  resolution: "@rometools/cli-linux-arm64@npm:12.0.0"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@rometools/cli-linux-x64@npm:12.0.0":
+  version: 12.0.0
+  resolution: "@rometools/cli-linux-x64@npm:12.0.0"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@rometools/cli-win32-arm64@npm:12.0.0":
+  version: 12.0.0
+  resolution: "@rometools/cli-win32-arm64@npm:12.0.0"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@rometools/cli-win32-x64@npm:12.0.0":
+  version: 12.0.0
+  resolution: "@rometools/cli-win32-x64@npm:12.0.0"
+  conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
@@ -4830,13 +4982,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bencodex@npm:^0.1.1, bencodex@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "bencodex@npm:0.1.2"
-  checksum: 0e6a7b34d039ccb18219ccbcf7a9a5473eca0a2deb38aadc923d219e19aacb301af0cf0c7350b04b38b7f498f23639b55c9a45a95253a77afbe2a86419ae6e51
-  languageName: node
-  linkType: hard
-
 "binary-extensions@npm:^2.0.0":
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
@@ -5933,11 +6078,14 @@ __metadata:
     "@fortawesome/react-fontawesome": latest
     "@graphql-codegen/cli": ^3.0.0
     "@graphql-codegen/typescript": ^3.0.0
+    "@graphql-codegen/typescript-graphql-request": ^4.5.9
     "@graphql-codegen/typescript-operations": ^3.0.0
     "@graphql-codegen/typescript-react-query": ^4.1.0
+    "@graphql-codegen/typescript-resolvers": ^3.2.0
+    "@maxswjeon/flattype": ^0.2.2
     "@planetarium/account-web": "file:./account-web"
-    "@planetarium/sign": ^0.0.12
-    "@planetarium/tx": ^0.46.2
+    "@planetarium/bencodex": ^0.2.2
+    "@planetarium/tx": ^0.53.4
     "@tanstack/react-query": ^4.24.9
     "@types/eslint": ^8
     "@types/prettier": ^2
@@ -5962,10 +6110,12 @@ __metadata:
     framer-motion: ^9.0.4
     graphql: ^16.6.0
     graphql-codegen: ^0.4.0
+    graphql-request: ^5.2.0
     lib9c-wasm: "file:./lib9c-wasm"
     prettier: ^2.8.4
     react: ^18.2.0
     react-dom: ^18.2.0
+    rome: ^12.0.0
     typescript: ^5.0.3
     vite: ^4.2.1
     vite-plugin-dynamic-import: ^1.2.7
@@ -7208,6 +7358,20 @@ __metadata:
   peerDependencies:
     graphql: 14 - 16
   checksum: 8b65d5c1b0cad8996a843b52305b2712ffbf842c700487d4cee1ed719f22baacaacfddafb65572bcddd67d57fd1d2d389dee2430ffba4b34c3ab542d079446c7
+  languageName: node
+  linkType: hard
+
+"graphql-request@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "graphql-request@npm:5.2.0"
+  dependencies:
+    "@graphql-typed-document-node/core": ^3.1.1
+    cross-fetch: ^3.1.5
+    extract-files: ^9.0.0
+    form-data: ^3.0.0
+  peerDependencies:
+    graphql: 14 - 16
+  checksum: a8aa37816378898e6fc8c4db04a1c114c98f98d90718cf1680bd96b22724bd43b1210619f9b0d328b5c1acb4f7b76d2227a2537cd5ab059bb54cf0debecb33bf
   languageName: node
   linkType: hard
 
@@ -9964,6 +10128,35 @@ __metadata:
   bin:
     rollup: dist/bin/rollup
   checksum: 34b0932839b7c2a5d1742fb21ce95a47e0b49a0849f4abee2dccf25833187aa7babb898ca90d4fc761cffa4102b9ed0ac6ad7f6f6b96c8b8e2d67305abc5da65
+  languageName: node
+  linkType: hard
+
+"rome@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "rome@npm:12.0.0"
+  dependencies:
+    "@rometools/cli-darwin-arm64": 12.0.0
+    "@rometools/cli-darwin-x64": 12.0.0
+    "@rometools/cli-linux-arm64": 12.0.0
+    "@rometools/cli-linux-x64": 12.0.0
+    "@rometools/cli-win32-arm64": 12.0.0
+    "@rometools/cli-win32-x64": 12.0.0
+  dependenciesMeta:
+    "@rometools/cli-darwin-arm64":
+      optional: true
+    "@rometools/cli-darwin-x64":
+      optional: true
+    "@rometools/cli-linux-arm64":
+      optional: true
+    "@rometools/cli-linux-x64":
+      optional: true
+    "@rometools/cli-win32-arm64":
+      optional: true
+    "@rometools/cli-win32-x64":
+      optional: true
+  bin:
+    rome: bin/rome
+  checksum: e26adcf06da28ec61b048b69f0387ad72c0f105444cb59f633f330aa9975e382f4055c6d17748e6630b303a33d87c5a3a0fc465bbb1054b74b88f01d14a70529
   languageName: node
   linkType: hard
 
