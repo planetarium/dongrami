@@ -3534,10 +3534,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/secp256k1@npm:^1.7.0, @noble/secp256k1@npm:^1.7.1":
+"@noble/secp256k1@npm:^1.7.1":
   version: 1.7.1
   resolution: "@noble/secp256k1@npm:1.7.1"
   checksum: d2301f1f7690368d8409a3152450458f27e54df47e3f917292de3de82c298770890c2de7c967d237eff9c95b70af485389a9695f73eb05a43e2bd562d18b18cb
+  languageName: node
+  linkType: hard
+
+"@noble/secp256k1@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@noble/secp256k1@npm:2.0.0"
+  checksum: 945d48a1142751658e89142c33a53c3d7cf8f0ce7cf43bd36b4dcfc1819bc7dc9c227737aca2c55a5699ff548122e21ca19395eb7682a1cea9d5e5e9cda22812
   languageName: node
   linkType: hard
 
@@ -3618,19 +3625,6 @@ __metadata:
     tslib: ^2.4.1
     webcrypto-core: ^1.7.4
   checksum: cfcd49f6bd199016de83445f1786b17c49d02aee74b400e7e03ba3bc3707457bdebd23bbaba0e2ff3becdcd769d71b79ec64ae35e0acb80b4ab3ed6326ab111c
-  languageName: node
-  linkType: hard
-
-"@planetarium/account-web@file:./account-web::locator=dongrami%40workspace%3A.":
-  version: 0.0.38
-  resolution: "@planetarium/account-web@file:./account-web#./account-web::hash=968797&locator=dongrami%40workspace%3A."
-  dependencies:
-    "@noble/secp256k1": ^1.7.0
-    buffer: ^6.0.3
-    ethers: ^5
-  peerDependencies:
-    "@planetarium/sign": "workspace:^"
-  checksum: 05e3a95e3de6f7faf5b6ace68decf95303e4ee22dbd700fbbfc97badc48b0abdcae199bb90768436b3cad7f2ed036fe58bcd764683ee8472d5a757880b977a07
   languageName: node
   linkType: hard
 
@@ -6083,7 +6077,7 @@ __metadata:
     "@graphql-codegen/typescript-react-query": ^4.1.0
     "@graphql-codegen/typescript-resolvers": ^3.2.0
     "@maxswjeon/flattype": ^0.2.2
-    "@planetarium/account-web": "file:./account-web"
+    "@noble/secp256k1": ^2.0.0
     "@planetarium/bencodex": ^0.2.2
     "@planetarium/tx": ^0.53.4
     "@tanstack/react-query": ^4.24.9

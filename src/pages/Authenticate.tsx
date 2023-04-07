@@ -12,8 +12,8 @@ import {
 import { faFile } from '@fortawesome/free-regular-svg-icons';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getAccountFromV3 } from '@planetarium/account-web';
 import { FormEvent, useEffect, useRef, useState } from 'react';
+import { getAccountFromV3 } from 'utils/account';
 import { useKeystore, useMainMutations, useMessage } from '../store/main';
 import { useWorker } from '../store/worker';
 import { readKeyFile } from '../worker/handlers';

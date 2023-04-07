@@ -20,7 +20,7 @@
     "@fortawesome/react-fontawesome": "latest",
     "@graphql-codegen/typescript-react-query": "^4.1.0",
     "@maxswjeon/flattype": "^0.2.2",
-    "@planetarium/account-web": "file:./account-web",
+    "@noble/secp256k1": "^2.0.0",
     "@planetarium/bencodex": "^0.2.2",
     "@planetarium/tx": "^0.53.4",
     "@tanstack/react-query": "^4.24.9",

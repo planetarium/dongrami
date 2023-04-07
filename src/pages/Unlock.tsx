@@ -12,8 +12,8 @@ import {
 } from '@chakra-ui/react';
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getAccountFromV3 } from '@planetarium/account-web';
 import { FormEvent, useState } from 'react';
+import { getAccountFromV3 } from 'utils/account';
 import { AddressSection } from '../sections/Address';
 import { useKeystore, useMainMutations, usePublicKey } from '../store/main';
 
