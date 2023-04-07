@@ -31,7 +31,7 @@
     "formik": "^2.2.9",
     "framer-motion": "^9.0.4",
     "graphql": "^16.6.0",
-    "graphql-request": "^5.2.0",
+    "graphql-request": "^4.2.0",
     "lib9c-wasm": "file:./lib9c-wasm",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
