@@ -3541,13 +3541,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/secp256k1@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@noble/secp256k1@npm:2.0.0"
-  checksum: 945d48a1142751658e89142c33a53c3d7cf8f0ce7cf43bd36b4dcfc1819bc7dc9c227737aca2c55a5699ff548122e21ca19395eb7682a1cea9d5e5e9cda22812
-  languageName: node
-  linkType: hard
-
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -6077,7 +6070,7 @@ __metadata:
     "@graphql-codegen/typescript-react-query": ^4.1.0
     "@graphql-codegen/typescript-resolvers": ^3.2.0
     "@maxswjeon/flattype": ^0.2.2
-    "@noble/secp256k1": ^2.0.0
+    "@noble/secp256k1": ^1.7.1
     "@planetarium/bencodex": ^0.2.2
     "@planetarium/tx": ^0.53.4
     "@tanstack/react-query": ^4.24.9

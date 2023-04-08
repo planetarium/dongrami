@@ -1,4 +1,9 @@
-import { decode, encode } from '@planetarium/bencodex';
+import {
+  BencodexDictionary,
+  decode,
+  encode,
+  isDictionary,
+} from '@planetarium/bencodex';
 import { Account } from 'types/account';
 import { Uint8ArrayEquals, Uint8ArrayToHex } from './Uint8Array';
 
@@ -8,14 +13,16 @@ export async function signTransaction(tx: Uint8Array, account: Account) {
   if (account.VERSION !== ACCOUNT_VERSION)
     throw new Error("The Account interface version doesn't match.");
 
-  const decodedTx = decode(tx, {
-    dictionaryConstructor: Map,
-  });
-  const publicKey = await account.getPublicKey();
-  const hash = await crypto.subtle.digest('SHA-256', tx);
-  const signature = await account.sign(new Uint8Array(hash));
+  const decodedTx = decode(tx);
+  const publicKey = await account.getPublicKey(false);
 
-  if (!decodedTx || !(decodedTx instanceof Map)) {
+  const hash = new Uint8Array(await crypto.subtle.digest('SHA-256', tx));
+
+  const signature = await account.sign(hash);
+
+  console.log(Uint8ArrayToHex(signature));
+
+  if (!decodedTx || !isDictionary(decodedTx)) {
     throw new Error('Invalid transaction.');
   }
 
@@ -25,15 +32,19 @@ export async function signTransaction(tx: Uint8Array, account: Account) {
 
   if (
     Array.from(decodedTx.entries()).some(
-      ([key, value]) => key[0] === 0x70 && !Uint8ArrayEquals(value, publicKey)
+      ([key, value]) =>
+        key[0] === 0x70 && !Uint8ArrayEquals(value as Uint8Array, publicKey)
     )
   ) {
     throw new Error(
-      'Public key from unsigned TX mismatches with public key derived from signing private key'
+      'Public key from unsigned Tx mismatches with public key derived from signing private key'
     );
   }
 
-  decodedTx.set(new Uint8Array([0x53]), signature);
+  const signedTx = new BencodexDictionary([
+    ...decodedTx,
+    [new Uint8Array([0x53]), signature],
+  ]);
 
-  return Uint8ArrayToHex(encode(decodedTx));
+  return Uint8ArrayToHex(encode(signedTx));
 }

@@ -1,6 +1,7 @@
-import * as secp from '@noble/secp256k1';
+import * as secp256k1 from '@noble/secp256k1';
 import { ethers } from 'ethers';
 import { Account } from 'types/account';
+import { HexToUint8Array } from './Uint8Array';
 
 export function decipherV3(input: string, password: string, nonStrict = false) {
   const json = nonStrict ? input.toLowerCase() : input;
@@ -19,18 +20,21 @@ export function getAccountFromV3(
     async getPublicKey(isCompressed = true) {
       const wallet = decipherV3(V3Keystore, passphrase);
 
-      return secp.getPublicKey(wallet.privateKey.substring(2), isCompressed);
+      return secp256k1.getPublicKey(
+        wallet.privateKey.substring(2),
+        isCompressed
+      );
     },
     async sign(hash) {
-      const signature = await secp.signAsync(
+      const signature = await secp256k1.sign(
         hash,
-        decipherV3(V3Keystore, passphrase).privateKey.substring(2),
+        HexToUint8Array(decipherV3(V3Keystore, passphrase).privateKey),
         {
-          lowS: true,
+          der: true,
         }
       );
 
-      return signature.toCompactRawBytes();
+      return signature;
     },
   };
 }

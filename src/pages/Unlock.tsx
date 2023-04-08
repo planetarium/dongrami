@@ -48,7 +48,7 @@ export function UnlockPage() {
 
     try {
       const account = getAccountFromV3(keystore, passphrase);
-      setAccount(account, await account.getPublicKey());
+      setAccount(account, await account.getPublicKey(false));
     } catch (e: unknown) {
       setLoading(false);
 

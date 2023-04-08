@@ -64,7 +64,7 @@ export function TransferSection() {
       return;
     }
 
-    const publicKey = await account.getPublicKey();
+    const publicKey = await account.getPublicKey(false);
     const sender = computeAddress(publicKey);
 
     const customAction = lib9c.transfer_asset3({
@@ -94,7 +94,7 @@ export function TransferSection() {
       publicKey,
       signer: HexToUint8Array(sender),
       timestamp: new Date(Date.now()),
-      updatedAddresses: new Set(),
+      updatedAddresses: new Set([]),
       genesisHash: HexToUint8Array(
         '4582250d0da33b06779a8475d283d5dd210c683b9b999d74d03fac4f58fa6bce'
       ),
