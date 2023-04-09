@@ -13,7 +13,6 @@ import { encodeUnsignedTxWithCustomActions } from '@planetarium/tx';
 import { ethers } from 'ethers';
 import { computeAddress } from 'ethers/lib/utils';
 import { useLib9c } from 'hooks/useLib9c';
-import { Address, Currency } from 'lib9c-wasm';
 import { FormEvent, useState } from 'react';
 import { useAccount } from 'store/main';
 import { HexToUint8Array, Uint8ArrayToHex } from 'utils/Uint8Array';
@@ -67,6 +66,9 @@ export function TransferSection() {
     const publicKey = await account.getPublicKey(false);
     const sender = computeAddress(publicKey);
 
+    const Address = lib9c.Address;
+    const Currency = lib9c.Currency;
+
     const customAction = lib9c.transfer_asset3({
       sender: new Address(sender),
       recipient: new Address(recipient),
@@ -94,7 +96,10 @@ export function TransferSection() {
       publicKey,
       signer: HexToUint8Array(sender),
       timestamp: new Date(Date.now()),
-      updatedAddresses: new Set([]),
+      updatedAddresses: new Set([
+        // HexToUint8Array(sender),
+        // HexToUint8Array(recipient),
+      ]),
       genesisHash: HexToUint8Array(
         '4582250d0da33b06779a8475d283d5dd210c683b9b999d74d03fac4f58fa6bce'
       ),
