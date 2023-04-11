@@ -98,7 +98,7 @@ export function TransferSection() {
       timestamp: new Date(Date.now()),
       updatedAddresses: new Set([
         // HexToUint8Array(sender),
-        // HexToUint8Array(recipient),
+        HexToUint8Array(recipient),
       ]),
       genesisHash: HexToUint8Array(
         '4582250d0da33b06779a8475d283d5dd210c683b9b999d74d03fac4f58fa6bce'
