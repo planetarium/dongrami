@@ -26,6 +26,7 @@ export function Title() {
         w="100%"
         fontSize="28px"
         lineHeight="32px"
+        textAlign={['center', 'left']}
       >
         &nbsp;Tx Signer
       </Text>
