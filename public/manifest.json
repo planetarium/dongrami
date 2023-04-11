@@ -1,0 +1,29 @@
+{
+  "name": "dongrami - Planetarium Tx Signer",
+  "short_name": "dongrami",
+  "start_url": "http://localhost:5173/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#3e2a8c",
+  "description": "dongrami, a planetarium tx signer",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "purpose": "maskable any",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "logo.png",
+      "purpose": "maskable any",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    },
+    {
+      "src": "logo_512x512.png",
+      "purpose": "maskable any",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
