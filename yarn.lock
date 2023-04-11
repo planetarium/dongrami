@@ -8212,11 +8212,11 @@ __metadata:
 
 "lib9c-wasm@file:./lib9c-wasm::locator=dongrami%40workspace%3A.":
   version: 0.0.2
-  resolution: "lib9c-wasm@file:./lib9c-wasm#./lib9c-wasm::hash=145527&locator=dongrami%40workspace%3A."
+  resolution: "lib9c-wasm@file:./lib9c-wasm#./lib9c-wasm::hash=5144cf&locator=dongrami%40workspace%3A."
   dependencies:
     "@ethersproject/address": ^5.7.0
     uuid: ^9.0.0
-  checksum: ba8bd26d2cacc44cd02b1555adddb5a3aa3f15583d15f00cbc70d1b2498a6eacdcc72f6b62244850dc6ea487a3add7500ef86f8a8cb7c8865f263f289c9489f7
+  checksum: f201628fe4ba90ceaac6a8693c04e6aaf3f7e5d313ea3abd9219f9f4f2ebb3dea1c461d601c898f35d4e18d413e70a90c640e3a994a9fe6f92960c245f932fab
   languageName: node
   linkType: hard
 
