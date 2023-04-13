@@ -26,6 +26,7 @@ export function TransferSection() {
 
   const [recipient, setRecipient] = useState('');
   const [amount, setAmount] = useState('');
+  const [memo, setMemo] = useState('');
 
   const lib9c = useLib9c();
 
@@ -82,7 +83,7 @@ export function TransferSection() {
         majorUnit: amount,
         minorUnit: '0',
       },
-      memo: 'Hello, world from lib9c-wasm w/ dongrami!',
+      memo,
     });
 
     console.log('customAction', Uint8ArrayToHex(customAction));
@@ -144,6 +145,14 @@ export function TransferSection() {
             type="text"
             value={amount}
             onChange={(e) => setAmount(e.currentTarget.value)}
+          />
+        </FormControl>
+        <FormControl mt="3">
+          <FormLabel>Memo</FormLabel>
+          <Input
+            type="text"
+            value={memo}
+            onChange={(e) => setMemo(e.currentTarget.value)}
           />
         </FormControl>
         <Button mt="3" type="submit" w="full" isDisabled={!formValid}>
