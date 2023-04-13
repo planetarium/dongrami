@@ -6,6 +6,7 @@ import {
   Heading,
   Input,
   Text,
+  Textarea,
   useToast,
 } from '@chakra-ui/react';
 import { decode, encode } from '@planetarium/bencodex';
@@ -149,8 +150,7 @@ export function TransferSection() {
         </FormControl>
         <FormControl mt="3">
           <FormLabel>Memo</FormLabel>
-          <Input
-            type="text"
+          <Textarea
             value={memo}
             onChange={(e) => setMemo(e.currentTarget.value)}
           />
