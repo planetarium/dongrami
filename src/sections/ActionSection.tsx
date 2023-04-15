@@ -1,3 +1,4 @@
+import Actions from '@/actions.json';
 import {
   Box,
   Button,
@@ -7,23 +8,38 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Select } from 'chakra-react-select';
+import { ActionParameter } from 'components/ActionParameter';
 import { useLib9c } from 'hooks/useLib9c';
-import { useState } from 'react';
-import actionDefs from '../../actions.json';
+import { useEffect, useState } from 'react';
+import { useActionFlat, useActionMutations } from 'store/action';
+
+type SelectValueType = {
+  label: keyof typeof Actions;
+  value: keyof typeof Actions;
+};
 
 export function ActionSection() {
   const lib9c = useLib9c();
 
-  const [action, setAction] = useState<{ label: string; value: string } | null>(
-    null
-  );
+  const [action, setAction] = useState<SelectValueType | null>(null);
 
-  const actionTypes = Object.keys(actionDefs)
+  const flat = useActionFlat();
+  const { clear, setAction: setStoreAction } = useActionMutations();
+
+  useEffect(() => {
+    if (!action) {
+      clear();
+      return;
+    }
+    setStoreAction(action.value);
+  }, [action]);
+
+  const actionTypes = Object.keys(Actions)
     .sort()
     .map((a) => ({
       label: a,
       value: a,
-    }));
+    })) as SelectValueType[];
 
   if (!lib9c) {
     return (
@@ -52,6 +68,9 @@ export function ActionSection() {
             onChange={(e) => setAction(e)}
           />
         </FormControl>
+        {flat.getKeys().map((key) => (
+          <ActionParameter key={key} flatKey={key} />
+        ))}
         <Button mt="3" type="submit" w="full">
           Send
         </Button>

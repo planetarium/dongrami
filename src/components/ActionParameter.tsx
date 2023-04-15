@@ -1,16 +1,25 @@
 import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { ethers } from 'ethers';
-import { ChangeEvent, ReactElement } from 'react';
-import { useActionState } from 'store/action';
+import { ChangeEvent, ReactElement, useMemo } from 'react';
+import { useActionState, useActionType } from 'store/action';
 
 type Props = {
-  name: string;
-  type: string;
   flatKey: string;
 };
 
-export function ActionParameter({ name, type, flatKey }: Props) {
+const getKeyName = (key: string) => {
+  const split = key.split('__');
+  if (split[split.length - 1].trim() === '') {
+    return split[split.length - 2];
+  }
+  return split[split.length - 1];
+};
+
+export function ActionParameter({ flatKey }: Props) {
   const [value, setValue] = useActionState(flatKey);
+
+  const name = useMemo(() => getKeyName(flatKey), [flatKey]);
+  const type = useActionType(flatKey);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
     setValue(e.currentTarget.value);
@@ -29,7 +38,7 @@ export function ActionParameter({ name, type, flatKey }: Props) {
   return (
     <FormControl isInvalid={checkInvalid()}>
       <FormLabel>{name}</FormLabel>
-      {Component}
+      {type}
     </FormControl>
   );
 }

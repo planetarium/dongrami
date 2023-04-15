@@ -3455,10 +3455,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@maxswjeon/flattype@npm:^0.2.2":
-  version: 0.2.2
-  resolution: "@maxswjeon/flattype@npm:0.2.2"
-  checksum: 5ba41e2a7fba35564a5dcecda153b1e2d7450fb93ee1fa7d10faf443a606fc02639bf248d8412661d4ca73c0680a6d3b62af42061aaff35cb5357bb51b1b38c5
+"@maxswjeon/flattype@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@maxswjeon/flattype@npm:0.3.0"
+  checksum: fb56da731d7d8daafe690587a57c577b360a853ec6493e6fbf5cad59dc5059890150c285c7132285a381fca86aaf21ae5beb20dcee972840f57c838bcd13c788
   languageName: node
   linkType: hard
 
@@ -5848,7 +5848,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": ^3.0.0
     "@graphql-codegen/typescript-react-query": ^4.1.0
     "@graphql-codegen/typescript-resolvers": ^3.2.0
-    "@maxswjeon/flattype": ^0.2.2
+    "@maxswjeon/flattype": ^0.3.0
     "@noble/secp256k1": ^1.7.1
     "@planetarium/bencodex": ^0.2.2
     "@planetarium/tx": ^0.53.4
