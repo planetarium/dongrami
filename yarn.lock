@@ -3455,13 +3455,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@maxswjeon/flattype@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@maxswjeon/flattype@npm:0.3.0"
-  checksum: fb56da731d7d8daafe690587a57c577b360a853ec6493e6fbf5cad59dc5059890150c285c7132285a381fca86aaf21ae5beb20dcee972840f57c838bcd13c788
-  languageName: node
-  linkType: hard
-
 "@motionone/animation@npm:^10.15.1":
   version: 10.15.1
   resolution: "@motionone/animation@npm:10.15.1"
@@ -5848,7 +5841,6 @@ __metadata:
     "@graphql-codegen/typescript-operations": ^3.0.0
     "@graphql-codegen/typescript-react-query": ^4.1.0
     "@graphql-codegen/typescript-resolvers": ^3.2.0
-    "@maxswjeon/flattype": ^0.3.0
     "@noble/secp256k1": ^1.7.1
     "@planetarium/bencodex": ^0.2.2
     "@planetarium/tx": ^0.53.4
@@ -5872,6 +5864,7 @@ __metadata:
     eslint-plugin-react: latest
     eslint-plugin-react-hooks: ^4.6.0
     ethers: ^5
+    flattype: ^0.3.1
     formik: ^2.2.9
     framer-motion: ^9.0.4
     graphql: ^16.6.0
@@ -6711,6 +6704,13 @@ __metadata:
   version: 3.2.7
   resolution: "flatted@npm:3.2.7"
   checksum: 427633049d55bdb80201c68f7eb1cbd533e03eac541f97d3aecab8c5526f12a20ccecaeede08b57503e772c769e7f8680b37e8d482d1e5f8d7e2194687f9ea35
+  languageName: node
+  linkType: hard
+
+"flattype@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "flattype@npm:0.3.1"
+  checksum: 361b93d486f1c1643bbcd800f4fce7722a7f83434588b3ecf94cfd1a888bc885fe7c5294bb9068d27772b60251291336373dcf6e4fca32873db5c0b78978f993
   languageName: node
   linkType: hard
 
@@ -7973,11 +7973,11 @@ __metadata:
 
 "lib9c-wasm@file:./lib9c-wasm::locator=dongrami%40workspace%3A.":
   version: 0.0.2
-  resolution: "lib9c-wasm@file:./lib9c-wasm#./lib9c-wasm::hash=5144cf&locator=dongrami%40workspace%3A."
+  resolution: "lib9c-wasm@file:./lib9c-wasm#./lib9c-wasm::hash=0bfa28&locator=dongrami%40workspace%3A."
   dependencies:
     "@ethersproject/address": ^5.7.0
     uuid: ^9.0.0
-  checksum: f201628fe4ba90ceaac6a8693c04e6aaf3f7e5d313ea3abd9219f9f4f2ebb3dea1c461d601c898f35d4e18d413e70a90c640e3a994a9fe6f92960c245f932fab
+  checksum: ce29dff2d2fb656ed907d05a0a5521c59e90c644fe9050f9dddadca112dd6fef6449288475b3f08f9be01963ef388cee786ddc8253dd460f47f001abf7de93a7
   languageName: node
   linkType: hard
 

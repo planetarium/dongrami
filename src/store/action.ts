@@ -1,5 +1,5 @@
 import Actions from '@/actions.json';
-import Flat from '@maxswjeon/flattype';
+import Flat from 'flattype';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
@@ -41,14 +41,26 @@ const actionToObject = (action: ActionType) => {
   return data;
 };
 
+const getSubObject = (action: ActionType, flatKey: string) => {
+  const keyArray = flatKey.split('__');
+  let type: ActionType = action;
+
+  for (const key of keyArray) {
+    type = type[key] as unknown as ActionType;
+  }
+
+  if (typeof type === 'object' && '__array' in type) {
+    // rome-ignore lint/performance/noDelete: <explanation>
+    delete type.__array;
+  }
+
+  return type;
+};
+
 const store = devtools<ActionState>((set) => ({
   data: Flat.from({}),
   mutations: {
     setAction: (action: keyof typeof Actions) => {
-      console.log(
-        Flat.from(actionToObject(Actions[action] as unknown as ActionType))
-      );
-
       set({
         action,
         data: Flat.from(
@@ -58,30 +70,27 @@ const store = devtools<ActionState>((set) => ({
     },
     setValue: (key, value) =>
       set((state) => ({ data: state.data.set(key, value) })),
-    appendValue: (key) =>
+    appendValue: (flatKey) =>
       set((state) => {
         if (!state.action) {
           return state;
         }
 
-        const action: ActionType = Actions[
-          state.action
-        ] as unknown as ActionType;
+        const subObject = getSubObject(
+          Actions[state.action] as unknown as ActionType,
+          flatKey
+        );
 
-        if (!(key in action)) {
-          return state;
-        }
+        const data = state.data;
 
-        const param = action[key];
-        const paramIsArray =
-          (typeof param === 'string' && param.endsWith('[]')) ||
-          (typeof param === 'object' && '__array' in param && param.__array);
+        data.append(
+          flatKey,
+          typeof subObject === 'object' ? actionToObject(subObject) : ''
+        );
 
-        if (!paramIsArray) {
-          return state;
-        }
+        console.log(data.getData());
 
-        return state;
+        return { ...state, data };
       }),
     clear: () => set(() => ({ data: Flat.from({}) })),
   },
@@ -106,16 +115,25 @@ export const useActionFull = <T>() => {
 export const useActionFlat = () => useActionStore((state) => state.data);
 export const useActionType = (key: string) => {
   const action = useAction();
+  const flat = useActionFlat();
+
   if (!action) {
     return undefined;
   }
 
   const actionType = Actions[action];
-  const actionKeyArray = key.split('__');
-  console.log(actionKeyArray);
 
-  if (actionKeyArray[actionKeyArray.length - 1].trim() === '') {
-    actionKeyArray.pop();
+  const actionKeyArray = key.split('__');
+  const isArray = Array.isArray(flat.get(key));
+  const isObject =
+    actionKeyArray[actionKeyArray.length - 1].trim() === '' && !isArray;
+
+  if (isObject) {
+    return '__object';
+  }
+
+  if (isArray) {
+    return '__array';
   }
 
   // rome-ignore lint/suspicious/noExplicitAny: <explanation>

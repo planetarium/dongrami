@@ -68,6 +68,9 @@ export function ActionSection() {
             onChange={(e) => setAction(e)}
           />
         </FormControl>
+        <Text mt="3" fontSize="md" fontWeight="medium">
+          Action Parameters
+        </Text>
         {flat.getKeys().map((key) => (
           <ActionParameter key={key} flatKey={key} />
         ))}
