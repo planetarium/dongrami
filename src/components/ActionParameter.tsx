@@ -17,6 +17,8 @@ import {
 import { ParameterComponent } from 'types/parameter';
 import {
   AddressParameter,
+  BencodexValueParameter,
+  BooleanParameter,
   GuidParameter,
   NullParameter,
   NumberParameter,
@@ -51,10 +53,12 @@ const handleTypeName = (type?: string | object) => {
 
 const ComponentMap = {
   address: AddressParameter,
+  boolean: BooleanParameter,
   guid: GuidParameter,
   number: NumberParameter,
   string: StringParameter,
   uint8array: Uint8ArrayParameter,
+  '"bencodexvalue"': BencodexValueParameter,
 };
 
 export function ActionParameter({ flatKey, isArray }: Props) {
@@ -82,9 +86,16 @@ export function ActionParameter({ flatKey, isArray }: Props) {
     <FormControl pl={indent} mt="3" isInvalid={invalid}>
       <Flex alignItems="center">
         <FormLabel my="0">{name}</FormLabel>
-        <Text as="span" color="gray.500" fontSize="sm">
+        <Text as="span" color="gray.500" fontSize="sm" mr="3">
           {handleTypeName(type)}
         </Text>
+        {type === 'boolean' && (
+          <Component
+            setValue={setValue}
+            setInvalid={setInvalid}
+            value={value}
+          />
+        )}
         <Spacer />
         {isArrayParent && (
           <Button size="sm" onClick={addItem}>
@@ -98,7 +109,9 @@ export function ActionParameter({ flatKey, isArray }: Props) {
         )}
       </Flex>
       <Box display={isArray ? 'block' : 'none'} mt="1" />
-      <Component setValue={setValue} setInvalid={setInvalid} value={value} />
+      {type !== 'boolean' && (
+        <Component setValue={setValue} setInvalid={setInvalid} value={value} />
+      )}
       {subFlatKeys.map((subFlatKey) => (
         <ActionParameter key={subFlatKey} flatKey={subFlatKey} isArray />
       ))}
