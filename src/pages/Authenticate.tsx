@@ -21,7 +21,7 @@ export function AuthenticatePage() {
 
   const { setKeystore, setAccount } = useMainMutations();
 
-  const [keyFile, setKeyFile] = useState<File | null>(null);
+  const [fileName, setFileName] = useState<string>('');
   const [passphrase, setPassphrase] = useState<string>('');
   const [isLoading, setLoading] = useState<boolean>(false);
 
@@ -36,7 +36,6 @@ export function AuthenticatePage() {
 
     if (!keystore) {
       setLoading(false);
-      setKeyFile(null);
       toast({
         title: 'Error',
         description: 'Failed to read key file. Please try again.',
@@ -95,6 +94,7 @@ export function AuthenticatePage() {
         return;
       }
 
+      setFileName(file.name);
       setKeystore(reader.result);
       setLoading(false);
     };
@@ -114,7 +114,7 @@ export function AuthenticatePage() {
           <Input
             type="text"
             readOnly
-            value={keyFile ? keyFile.name : ''}
+            value={fileName}
             placeholder="Select a key file..."
             onClick={() => inputFileRef.current?.click()}
           />
