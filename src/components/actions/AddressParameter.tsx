@@ -2,11 +2,11 @@ import { Input } from '@chakra-ui/react';
 import { ethers } from 'ethers';
 import { ParameterComponentProps } from 'types/parameter';
 
-export const AddressParameter = ({
+export function AddressParameter({
   setInvalid,
   setValue,
   value,
-}: ParameterComponentProps) => {
+}: ParameterComponentProps) {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
     setInvalid(
@@ -15,4 +15,4 @@ export const AddressParameter = ({
   };
 
   return <Input type="text" value={value} onChange={onChange} />;
-};
+}

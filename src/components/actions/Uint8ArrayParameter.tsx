@@ -1,5 +1,15 @@
-import { Input, Text } from '@chakra-ui/react';
+import {
+  Button,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Text,
+} from '@chakra-ui/react';
+import { faFile } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRef, useState } from 'react';
 import { ParameterComponentProps } from 'types/parameter';
+import { Uint8ArrayToHex } from 'utils/Uint8Array';
 
 const isHex = (str: string) => {
   const re = /^0x?[0-9a-fA-F]+$/;
@@ -11,11 +21,14 @@ const isBase64 = (str: string) => {
   return re.test(str);
 };
 
-export const Uint8ArrayParameter = ({
+export function Uint8ArrayParameter({
   setInvalid,
   setValue,
   value,
-}: ParameterComponentProps) => {
+}: ParameterComponentProps) {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
     setInvalid(
@@ -25,9 +38,43 @@ export const Uint8ArrayParameter = ({
     );
   };
 
+  const onFileLoad = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.currentTarget.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (!(reader.result instanceof ArrayBuffer)) {
+        return;
+      }
+
+      setValue(`0x${Uint8ArrayToHex(new Uint8Array(reader.result))}`);
+      setLoading(false);
+    };
+
+    reader.readAsArrayBuffer(file);
+    setLoading(true);
+  };
+
   return (
     <>
-      <Input type="text" value={value} onChange={onChange} />
+      <InputGroup>
+        <Input
+          type="text"
+          value={value}
+          onChange={onChange}
+          isDisabled={loading}
+        />
+        <InputRightElement>
+          <Button onClick={() => fileRef.current?.click()} isDisabled={loading}>
+            <FontAwesomeIcon icon={faFile} />
+          </Button>
+        </InputRightElement>
+      </InputGroup>
       <Text
         ml="1"
         fontSize="12"
@@ -36,6 +83,7 @@ export const Uint8ArrayParameter = ({
       >
         Will be interpreted as {isHex(value) ? 'Hex' : 'Base64'} Value
       </Text>
+      <Input type="file" ref={fileRef} display="none" onChange={onFileLoad} />
     </>
   );
-};
+}

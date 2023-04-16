@@ -2,11 +2,11 @@ import { Input } from '@chakra-ui/react';
 import { ParameterComponentProps } from 'types/parameter';
 import * as uuid from 'uuid';
 
-export const GuidParameter = ({
+export function GuidParameter({
   setInvalid,
   setValue,
   value,
-}: ParameterComponentProps) => {
+}: ParameterComponentProps) {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
     setInvalid(
@@ -15,4 +15,4 @@ export const GuidParameter = ({
   };
 
   return <Input type="text" value={value} onChange={onChange} />;
-};
+}
