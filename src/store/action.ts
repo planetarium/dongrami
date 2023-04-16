@@ -13,11 +13,13 @@ type ActionType = Record<
 
 type ActionState = {
   data: Flat;
+  key: number;
   action?: keyof typeof Actions;
   mutations: {
     setAction: (action: keyof typeof Actions) => void;
     setValue: (key: string, value: string | object) => void;
     appendValue: (key: string) => void;
+    deleteValue: (key: string) => void;
     clear: () => void;
   };
 };
@@ -58,6 +60,7 @@ const getSubObject = (action: ActionType, flatKey: string) => {
 };
 
 const store = devtools<ActionState>((set) => ({
+  key: 0,
   data: Flat.from({}),
   mutations: {
     setAction: (action: keyof typeof Actions) => {
@@ -69,7 +72,11 @@ const store = devtools<ActionState>((set) => ({
       });
     },
     setValue: (key, value) =>
-      set((state) => ({ data: state.data.set(key, value) })),
+      set((state) => ({
+        ...state,
+        data: state.data.set(key, value),
+        key: state.key + 1,
+      })),
     appendValue: (flatKey) =>
       set((state) => {
         if (!state.action) {
@@ -88,11 +95,16 @@ const store = devtools<ActionState>((set) => ({
           typeof subObject === 'object' ? actionToObject(subObject) : ''
         );
 
-        console.log(data.getData());
-
-        return { ...state, data };
+        return { ...state, data, key: state.key + 1 };
       }),
-    clear: () => set(() => ({ data: Flat.from({}) })),
+    deleteValue: (flatKey) =>
+      set((state) => {
+        const data = state.data;
+        data.delete(flatKey);
+
+        return { ...state, data, key: state.key + 1 };
+      }),
+    clear: () => set(() => ({ data: Flat.from({}), key: 0 })),
   },
 }));
 
@@ -102,11 +114,15 @@ export const useActionMutations = () =>
 export const useAction = () => useActionStore((state) => state.action);
 export const useActionState = (key: string) => {
   const { setValue } = useActionMutations();
-  const state = useActionStore((state) => state.data);
-  return [
-    state.get(key) as string,
-    (value: string) => setValue(key, value),
-  ] as [string, (value: string) => void];
+  const { data } = useActionStore((state) => ({
+    data: state.data,
+    key: state.key,
+  }));
+
+  return [data.get(key) as string, (value: string) => setValue(key, value)] as [
+    string,
+    (value: string) => void
+  ];
 };
 export const useActionFull = <T>() => {
   const state = useActionStore((state) => state.data);
@@ -124,6 +140,7 @@ export const useActionType = (key: string) => {
   const actionType = Actions[action];
 
   const actionKeyArray = key.split('__');
+
   const isArray = Array.isArray(flat.get(key));
   const isObject =
     actionKeyArray[actionKeyArray.length - 1].trim() === '' && !isArray;
@@ -136,11 +153,33 @@ export const useActionType = (key: string) => {
     return '__array';
   }
 
+  if (!isNaN(Number(actionKeyArray[actionKeyArray.length - 1]))) {
+    actionKeyArray.pop();
+  }
+
   // rome-ignore lint/suspicious/noExplicitAny: <explanation>
   let type: any = actionType;
   for (const actionKey of actionKeyArray) {
     type = type[actionKey];
   }
 
-  return type as string;
+  if (typeof type === 'string') {
+    return type.replace('[]', '');
+  }
+
+  return type;
 };
+export const useSubFlatKeys = (key: string) => {
+  const { flat } = useActionStore((store) => ({
+    flat: store.data,
+    key: store.key,
+  }));
+
+  if (!flat.exist(key) || !Array.isArray(flat.get(key))) {
+    return [];
+  }
+
+  return flat.getKeys().filter((k) => k.startsWith(`${key}`) && key !== k);
+};
+
+export const useActionKey = () => useActionStore((state) => state.key);

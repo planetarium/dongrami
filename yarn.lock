@@ -5864,7 +5864,7 @@ __metadata:
     eslint-plugin-react: latest
     eslint-plugin-react-hooks: ^4.6.0
     ethers: ^5
-    flattype: ^0.3.1
+    flattype: ^0.3.4
     formik: ^2.2.9
     framer-motion: ^9.0.4
     graphql: ^16.6.0
@@ -6707,10 +6707,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flattype@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "flattype@npm:0.3.1"
-  checksum: 361b93d486f1c1643bbcd800f4fce7722a7f83434588b3ecf94cfd1a888bc885fe7c5294bb9068d27772b60251291336373dcf6e4fca32873db5c0b78978f993
+"flattype@npm:^0.3.4":
+  version: 0.3.4
+  resolution: "flattype@npm:0.3.4"
+  checksum: 439c1ab17b1cac2b3eef44148f750134ed943bc8264195aafe1162aced044bec587653b38b83922e019038cba7ff3d23599a01b6d266dd6544a29df165950849
   languageName: node
   linkType: hard
 

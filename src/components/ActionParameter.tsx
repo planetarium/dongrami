@@ -1,22 +1,32 @@
 import {
+  Box,
   Button,
   Flex,
   FormControl,
   FormLabel,
-  Input,
   Spacer,
   Text,
 } from '@chakra-ui/react';
-import { ethers } from 'ethers';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import {
   useActionMutations,
   useActionState,
   useActionType,
+  useSubFlatKeys,
 } from 'store/action';
+import { ParameterComponent } from 'types/parameter';
+import {
+  AddressParameter,
+  GuidParameter,
+  NullParameter,
+  NumberParameter,
+  StringParameter,
+  Uint8ArrayParameter,
+} from './actions';
 
 type Props = {
   flatKey: string;
+  isArray?: boolean;
 };
 
 const getKeyName = (key: string) => {
@@ -32,51 +42,66 @@ const camelCaseToWords = (str: string) => {
   return words.charAt(0).toUpperCase() + words.slice(1);
 };
 
-const handleTypeName = (type?: string) => {
+const handleTypeName = (type?: string | object) => {
+  if (!!type && typeof type === 'object') return 'Object';
   if (type === '__array') return 'Array';
   if (type === '__object') return 'Object';
   return type;
 };
 
-export function ActionParameter({ flatKey }: Props) {
+const ComponentMap = {
+  address: AddressParameter,
+  guid: GuidParameter,
+  number: NumberParameter,
+  string: StringParameter,
+  uint8array: Uint8ArrayParameter,
+};
+
+export function ActionParameter({ flatKey, isArray }: Props) {
   const name = useMemo(() => camelCaseToWords(getKeyName(flatKey)), [flatKey]);
+  const indent = useMemo(() => flatKey.split('__').length * 3, [flatKey]);
 
   const type = useActionType(flatKey);
   const [value, setValue] = useActionState(flatKey);
-  const { appendValue } = useActionMutations();
+  const { appendValue, deleteValue } = useActionMutations();
 
-  const isArray = type === '__array';
-  const onAddItem = () => appendValue(flatKey);
+  const [invalid, setInvalid] = useState(false);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setValue(e.currentTarget.value);
+  const isArrayParent = type === '__array';
+  const addItem = () => appendValue(flatKey);
+  const deleteItem = () => deleteValue(flatKey);
 
-  const isInvalid = useMemo(() => {
-    if (type === 'Address') {
-      return ethers.utils.isAddress(value);
-    }
-  }, [type, value]);
-
-  let Component: React.ReactElement | null = null;
-  if (type === 'Address') {
-    Component = <Input type="text" value={value} onChange={onChange} />;
+  let Component: ParameterComponent = NullParameter;
+  if (type && typeof type === 'string' && type.toLowerCase() in ComponentMap) {
+    Component = ComponentMap[type.toLowerCase() as keyof typeof ComponentMap];
   }
 
+  const subFlatKeys = useSubFlatKeys(flatKey);
+
   return (
-    <FormControl pl="3" mt="3" isInvalid={isInvalid}>
+    <FormControl pl={indent} mt="3" isInvalid={invalid}>
       <Flex alignItems="center">
         <FormLabel my="0">{name}</FormLabel>
         <Text as="span" color="gray.500" fontSize="sm">
           {handleTypeName(type)}
         </Text>
         <Spacer />
-        {isArray && (
-          <Button size="sm" onClick={onAddItem}>
+        {isArrayParent && (
+          <Button size="sm" onClick={addItem}>
             Add Item
           </Button>
         )}
+        {isArray && (
+          <Button size="sm" onClick={deleteItem}>
+            Remove Item
+          </Button>
+        )}
       </Flex>
-      {Component}
+      <Box display={isArray ? 'block' : 'none'} mt="1" />
+      <Component setValue={setValue} setInvalid={setInvalid} value={value} />
+      {subFlatKeys.map((subFlatKey) => (
+        <ActionParameter key={subFlatKey} flatKey={subFlatKey} isArray />
+      ))}
     </FormControl>
   );
 }

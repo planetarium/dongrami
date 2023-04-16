@@ -35,7 +35,19 @@ export function ActionSection() {
   }, [action]);
 
   const actionTypes = Object.keys(Actions)
-    .sort()
+    .sort((a, b) => {
+      const actionNameA = (a.match(/([A-Z|a-z|_-]+)/g) || [''])[0];
+      const actionNameB = (b.match(/([A-Z|a-z|_-]+)/g) || [''])[0];
+
+      if (actionNameA !== actionNameB) {
+        return actionNameA > actionNameB ? 1 : -1;
+      }
+
+      const actionIndexA = parseInt((a.match(/([\d]+)/g) || ['0'])[0]);
+      const actionIndexB = parseInt((b.match(/([\d]+)/g) || ['0'])[0]);
+
+      return actionIndexA > actionIndexB ? 1 : -1;
+    })
     .map((a) => ({
       label: a,
       value: a,
@@ -68,14 +80,22 @@ export function ActionSection() {
             onChange={(e) => setAction(e)}
           />
         </FormControl>
-        <Text mt="3" fontSize="md" fontWeight="medium">
+        <Text
+          mt="3"
+          fontSize="md"
+          fontWeight="medium"
+          display={action ? 'block' : 'none'}
+        >
           Action Parameters
         </Text>
-        {flat.getKeys().map((key) => (
-          <ActionParameter key={key} flatKey={key} />
-        ))}
+        <Box maxH="500px" overflowY="auto" id="actionParams">
+          {flat.getKeys().map((key) => (
+            <ActionParameter key={key} flatKey={key} />
+          ))}
+        </Box>
+        {/* TODO: Disable the "Submit" button when invalid param exist */}
         <Button mt="3" type="submit" w="full">
-          Send
+          Submit
         </Button>
       </Box>
     </Box>
