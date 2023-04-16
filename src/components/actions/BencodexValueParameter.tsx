@@ -9,7 +9,6 @@ import { Uint8ArrayToBase64 } from 'utils/Uint8Array';
 export function BencodexValueParameter({
   setInvalid,
   setValue,
-  value,
 }: ParameterComponentProps) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
