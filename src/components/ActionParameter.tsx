@@ -25,6 +25,7 @@ import {
   StringParameter,
   Uint8ArrayParameter,
 } from './actions';
+import { CurrencyParameter } from './actions/CurrencyParameter';
 
 type Props = {
   flatKey: string;
@@ -59,6 +60,7 @@ const ComponentMap = {
   string: StringParameter,
   uint8array: Uint8ArrayParameter,
   '"bencodexvalue"': BencodexValueParameter,
+  currency: CurrencyParameter,
 };
 
 export function ActionParameter({ flatKey, isArray }: Props) {
