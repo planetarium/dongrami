@@ -12,7 +12,10 @@ type CurrencySelectValue = {
   value: number;
 };
 
-export function CurrencyParameter({ setValue }: ParameterComponentProps) {
+export function CurrencyParameter({
+  setValue,
+  value,
+}: ParameterComponentProps) {
   const { isOpen, onClose } = useDisclosure();
   const currencies = useCurrencies();
   const currencySelectValues = currencies.map((currency, index) => ({
@@ -44,6 +47,7 @@ export function CurrencyParameter({ setValue }: ParameterComponentProps) {
 
             setValue(JSON.stringify(currencies[e.value]));
           }}
+          data-empty={value.trim() === ''}
         />
         <Button>
           <FontAwesomeIcon icon={faGear} />

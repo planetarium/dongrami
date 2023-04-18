@@ -6,5 +6,12 @@ export function StringParameter({ setValue, value }: ParameterComponentProps) {
     setValue(e.currentTarget.value);
   };
 
-  return <Input type="text" value={value} onChange={onChange} />;
+  return (
+    <Input
+      type="text"
+      value={value}
+      onChange={onChange}
+      data-empty={value.trim() === ''}
+    />
+  );
 }

@@ -6,5 +6,11 @@ export function BooleanParameter({ setValue, value }: ParameterComponentProps) {
     setValue(e.currentTarget.checked ? 'true' : 'false');
   };
 
-  return <Checkbox isChecked={value === 'true'} onChange={onChange} />;
+  return (
+    <Checkbox
+      isChecked={value === 'true'}
+      onChange={onChange}
+      data-empty={false}
+    />
+  );
 }

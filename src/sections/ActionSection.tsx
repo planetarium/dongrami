@@ -10,7 +10,7 @@ import {
 import { Select } from 'chakra-react-select';
 import { ActionParameter } from 'components/ActionParameter';
 import { useLib9c } from 'hooks/useLib9c';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useActionFlat, useActionMutations } from 'store/action';
 
 type SelectValueType = {
@@ -26,6 +26,8 @@ export function ActionSection() {
   const flat = useActionFlat();
   const { clear, setAction: setStoreAction } = useActionMutations();
 
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!action) {
       clear();
@@ -33,6 +35,25 @@ export function ActionSection() {
     }
     setStoreAction(action.value);
   }, [action]);
+
+  if (!lib9c) {
+    return (
+      <Box>
+        <Heading as="h2" size="lg">
+          Create Action
+        </Heading>
+        <Text my="6" textAlign="center">
+          Loading lib9c-wasm...
+        </Text>
+      </Box>
+    );
+  }
+
+  const invalid =
+    sectionRef.current &&
+    sectionRef.current.querySelectorAll(
+      "[data-empty='true'], [aria-invalid='true']"
+    ).length > 0;
 
   const actionTypes = Object.keys(Actions)
     .sort((a, b) => {
@@ -52,19 +73,6 @@ export function ActionSection() {
       label: a,
       value: a,
     })) as SelectValueType[];
-
-  if (!lib9c) {
-    return (
-      <Box>
-        <Heading as="h2" size="lg">
-          Create Action
-        </Heading>
-        <Text my="6" textAlign="center">
-          Loading lib9c-wasm...
-        </Text>
-      </Box>
-    );
-  }
 
   return (
     <Box>
@@ -88,13 +96,12 @@ export function ActionSection() {
         >
           Action Parameters
         </Text>
-        <Box maxH="500px" overflowY="auto" id="actionParams">
+        <Box maxH="500px" overflowY="auto" id="actionParams" ref={sectionRef}>
           {flat.getKeys().map((key) => (
             <ActionParameter key={key} flatKey={key} />
           ))}
         </Box>
-        {/* TODO: Disable the "Submit" button when invalid param exist */}
-        <Button mt="3" type="submit" w="full">
+        <Button mt="3" type="submit" w="full" isDisabled={!!invalid}>
           Submit
         </Button>
       </Box>

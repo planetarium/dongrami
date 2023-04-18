@@ -11,5 +11,12 @@ export function NumberParameter({
     setInvalid(!!e.currentTarget.value && isNaN(Number(e.currentTarget.value)));
   };
 
-  return <Input type="text" value={value} onChange={onChange} />;
+  return (
+    <Input
+      type="text"
+      value={value}
+      onChange={onChange}
+      data-empty={value.trim() === ''}
+    />
+  );
 }

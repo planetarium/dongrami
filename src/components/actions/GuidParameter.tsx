@@ -14,5 +14,12 @@ export function GuidParameter({
     );
   };
 
-  return <Input type="text" value={value} onChange={onChange} />;
+  return (
+    <Input
+      type="text"
+      value={value}
+      onChange={onChange}
+      data-empty={value.trim() === ''}
+    />
+  );
 }

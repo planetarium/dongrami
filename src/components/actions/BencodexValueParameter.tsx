@@ -9,6 +9,7 @@ import { Uint8ArrayToBase64 } from 'utils/Uint8Array';
 export function BencodexValueParameter({
   setInvalid,
   setValue,
+  value,
 }: ParameterComponentProps) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -58,7 +59,13 @@ export function BencodexValueParameter({
           </Button>
         </InputRightElement>
       </InputGroup>
-      <Input type="file" ref={fileRef} display="none" onChange={onFileLoad} />
+      <Input
+        type="file"
+        ref={fileRef}
+        display="none"
+        onChange={onFileLoad}
+        data-empty={value.trim() === ''}
+      />
     </>
   );
 }

@@ -68,6 +68,7 @@ export function Uint8ArrayParameter({
           value={value}
           onChange={onChange}
           isDisabled={loading}
+          data-empty={value.trim() === ''}
         />
         <InputRightElement>
           <Button onClick={() => fileRef.current?.click()} isDisabled={loading}>

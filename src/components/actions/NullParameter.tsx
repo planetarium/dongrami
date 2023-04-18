@@ -1,5 +1,5 @@
 import { ParameterComponent } from 'types/parameter';
 
 export const NullParameter: ParameterComponent = () => {
-  return <></>;
+  return <div data-empty={true} />;
 };
