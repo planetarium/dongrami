@@ -63,7 +63,7 @@
     "prettier": "^2.8.4",
     "rome": "^12.0.0",
     "typescript": "^5.0.3",
-    "vite": "^4.2.1",
+    "vite": "^4.2.3",
     "vite-plugin-dynamic-import": "^1.2.7",
     "vite-plugin-node-polyfills": "^0.7.0"
   },
